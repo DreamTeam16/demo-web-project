@@ -1,4 +1,4 @@
-package edu.csupomona.cs480.controller;
+ package edu.csupomona.cs480.controller;
 
 import java.util.List;
 
@@ -52,6 +52,15 @@ public class WebController {
 		return "OK";
 	}
 
+	//Jason La's HTTP API
+	@RequestMapping(value = "/cs480/yellowstone", method = RequestMethod.GET)
+	String yellowstone() {
+		String page = "<html><body style=\"color: #999; text-shadow: 3px 3px #000; font-size: 24px;\"><h1>Yellowstone National Park</h1>"
+				+ "<img style=\"width: 1200px; height: auto;\" src=\"https://c1.staticflickr.com/9/8780/18371426896_de1853cf96_h.jpg\" />"
+				+ "</body></html>";
+		return page;
+	}
+	
 	/**
 	 * This is a simple example of how to use a data manager
 	 * to retrieve the data and return it as an HTTP response.
