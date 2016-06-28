@@ -69,6 +69,13 @@ public class WebController {
 				+ "</body></html>";
 		return dv;
 	}
+	//Rocky Qiu's HTTP API
+	@RequestMapping(value = "/cs480/rqapitest", method = RequestMethod.GET)
+	String quicktest(){
+		String page ="<html><body><div>Test Test</div><body></html>";
+		
+		return page;
+	}
 	
 	/**
 	 * This is a simple example of how to use a data manager
