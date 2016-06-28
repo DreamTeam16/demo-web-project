@@ -60,6 +60,14 @@ public class WebController {
 				+ "</body></html>";
 		return page;
 	}
+	//Jason Zhang's HTTP API
+		@RequestMapping(value = "/cs480/dreamville", method = RequestMethod.GET)
+		String Dreamville() {
+			String dv = "<html><body style=\"color: #0000ff; text-white: 3px 3px #000; font-size: 36px;\"><h1>Dreamville Records</h1>"
+					+ "<img style=\"width: 1200px; height: auto;\" src=\"http://images.complex.com/complex/image/upload/t_article_image/dreamville-records-logo_wqw8oo.jpg\" />"
+					+ "</body></html>";
+			return dv;
+		}
 	
 	//Rocky Qiu's HTTP API
 	@RequestMapping(value = "/cs480/rqapitest", method = RequestMethod.GET)
