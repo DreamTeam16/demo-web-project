@@ -76,10 +76,10 @@ public class WebController {
 				+ "</body></html>";
 		return dv;
 	}
-	//Rocky Qiu's HTTP API
-	@RequestMapping(value = "/cs480/rqapitest", method = RequestMethod.GET)
-	String quicktest(){
-		String page ="<html><body><div>Test Test</div><body></html>";
+	//Rocky Qiu's assignment4 with jsouptest
+	@RequestMapping(value = "/rqjsoup", method = RequestMethod.GET)
+	public String quicktest(){
+		String page ="jsouptest.html";
 		
 		return page;
 	}
