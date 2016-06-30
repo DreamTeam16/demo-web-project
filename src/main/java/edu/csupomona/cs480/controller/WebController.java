@@ -3,6 +3,7 @@
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,7 @@ import edu.csupomona.cs480.data.provider.UserManager;
  *
  */
 
-@RestController
+@Controller
 public class WebController {
 
 	/**
@@ -51,7 +52,7 @@ public class WebController {
 		// with the URL: http://localhost:8080/
 		return "OK";
 	}
-
+		
 	//Jason La's HTTP API
 	@RequestMapping(value = "/cs480/yellowstone", method = RequestMethod.GET)
 	String yellowstone() {
@@ -59,6 +60,12 @@ public class WebController {
 				+ "<img style=\"width: 1200px; height: auto;\" src=\"https://c1.staticflickr.com/9/8780/18371426896_de1853cf96_h.jpg\" />"
 				+ "</body></html>";
 		return page;
+	}
+
+	//Jason La's method for assignment #4
+	@RequestMapping(value = "/graph", method = RequestMethod.GET)
+	public String chart() {
+		return "chart-test.html";
 	}
 	
 	//Jason Zhang's HTTP API

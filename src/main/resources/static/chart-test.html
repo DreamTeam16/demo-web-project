@@ -1,0 +1,38 @@
+<html>
+	<!-- This page will be shown when you git the root URL -->
+	<head>
+	    <title>C3 Chart Demo</title>
+	    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	    <script src="/js/home-control.js"></script>
+
+		<link href="/js/c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
+  		
+	</head>
+
+	<body>
+	<p>this is a chart</p>
+	
+		<div id="chart"></div>
+		
+		<script src="/js/c3/d3.min.js"></script>
+		<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
+ 		
+		<script>
+			var chart = c3.generate({
+				bindto: '#chart',
+				
+			    data: {
+			        columns: [
+			            ['Lulu', 50],
+			            ['Olaf', 50],
+			        ],
+			        type : 'donut'
+			    },
+			    donut: {
+			        title: "Dogs love:",
+			    }
+			});
+		</script>
+	</body>
+
+</html>
