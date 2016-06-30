@@ -3,6 +3,7 @@
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,7 @@ import edu.csupomona.cs480.data.provider.UserManager;
  *
  */
 
-@RestController
+@Controller
 public class WebController {
 
 	/**
@@ -51,7 +52,7 @@ public class WebController {
 		// with the URL: http://localhost:8080/
 		return "OK";
 	}
-
+		
 	//Jason La's HTTP API
 	@RequestMapping(value = "/cs480/yellowstone", method = RequestMethod.GET)
 	String yellowstone() {
@@ -60,15 +61,21 @@ public class WebController {
 				+ "</body></html>";
 		return page;
 	}
-	//Jason Zhang's HTTP API
-		@RequestMapping(value = "/cs480/dreamville", method = RequestMethod.GET)
-		String Dreamville() {
-			String dv = "<html><body style=\"color: #0000ff; text-white: 3px 3px #000; font-size: 36px;\"><h1>Dreamville Records</h1>"
-					+ "<img style=\"width: 1200px; height: auto;\" src=\"http://images.complex.com/complex/image/upload/t_article_image/dreamville-records-logo_wqw8oo.jpg\" />"
-					+ "</body></html>";
-			return dv;
-		}
+
+	//Jason La's method for assignment #4
+	@RequestMapping(value = "/graph", method = RequestMethod.GET)
+	public String chart() {
+		return "chart-test.html";
+	}
 	
+	//Jason Zhang's HTTP API
+	@RequestMapping(value = "/cs480/dreamville", method = RequestMethod.GET)
+	String Dreamville() {
+		String dv = "<html><body style=\"color: #0000ff; text-white: 3px 3px #000; font-size: 36px;\"><h1>Dreamville Records</h1>"
+				+ "<img style=\"width: 1200px; height: auto;\" src=\"http://images.complex.com/complex/image/upload/t_article_image/dreamville-records-logo_wqw8oo.jpg\" />"
+				+ "</body></html>";
+		return dv;
+	}
 	//Rocky Qiu's HTTP API
 	@RequestMapping(value = "/cs480/rqapitest", method = RequestMethod.GET)
 	String quicktest(){
@@ -76,7 +83,7 @@ public class WebController {
 		
 		return page;
 	}
-
+	
 	/**
 	 * This is a simple example of how to use a data manager
 	 * to retrieve the data and return it as an HTTP response.
