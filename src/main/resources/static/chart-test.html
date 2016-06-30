@@ -10,7 +10,7 @@
 	</head>
 
 	<body>
-	<p>this is a chart</p>
+	<p>Visitation data for Joshua Tree National Park</p>
 	
 		<div id="chart"></div>
 		
@@ -22,15 +22,10 @@
 				bindto: '#chart',
 				
 			    data: {
-			        columns: [
-			            ['Lulu', 50],
-			            ['Olaf', 50],
-			        ],
-			        type : 'donut'
-			    },
-			    donut: {
-			        title: "Dogs love:",
+			        url: '/data/test-data.csv',
+			        type : 'line'
 			    }
+
 			});
 		</script>
 	</body>
