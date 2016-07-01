@@ -76,6 +76,13 @@ public class WebController {
 				+ "</body></html>";
 		return dv;
 	}
+	
+	//Jason Zhang's Method for Assignment #4
+	public String assignment4() {
+		String jzpage ="commonsmath.html";
+		return jzpage;
+	}
+	
 	//Rocky Qiu's assignment4 with jsouptest
 	@RequestMapping(value = "/rqjsoup", method = RequestMethod.GET)
 	public String quicktest(){
