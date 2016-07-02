@@ -1,6 +1,7 @@
  package edu.csupomona.cs480.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.csupomona.cs480.App;
+import edu.csupomona.cs480.data.CsvParser;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
 
@@ -66,6 +68,12 @@ public class WebController {
 	@RequestMapping(value = "/graph", method = RequestMethod.GET)
 	public String chart() {
 		return "chart-test.html";
+	}
+	
+	//test for parkMap
+	@RequestMapping(value = "/parkMap", method = RequestMethod.GET)
+	public String parkMap() {
+		return "test " + CsvParser.mapAll();
 	}
 	
 	//Jason Zhang's HTTP API
