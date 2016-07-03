@@ -4,10 +4,54 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class CsvParser {
+	
+	//generates all CSV files for charts
+	public static void generateAllCSV(ArrayList<ParkData> parks) {
+		for (int i = 0; i < parks.size(); i++) {
+			generateCSV(parks, i);
+		}
+	}
+	
+	//generate single CSV file for chart
+	public static void generateCSV(ArrayList<ParkData> parks, int index){
+		
+		for (int i = 0; i < parks.size(); i++) {
+			System.out.println("park name: " + parks.get(i).getName());
+			System.out.println("visitors in april: " + parks.get(i).getRecVisitors()[4]);
+		}
+		
+		String fileName = "src/main/resources/static/data/parks/chart-data/";
+		fileName = fileName.concat(parks.get(index).getName()).concat(".csv");			
+		
+		System.out.println(parks.get(index).getName());
+		System.out.println(fileName);
+		
+		try {
+			FileWriter writer = new FileWriter(fileName);
+			System.out.println("success");
+			
+			writer.append("January, February, March, April, May, June, July, August, September, October, November, December\n");
+			
+			for(int i = 1; i < 13; i++) {
+				writer.append(Integer.toString(parks.get(index).getRecVisitors()[i]));
+				if(i != 12)
+					writer.append(",");
+			}
+
+			writer.flush();
+			writer.close();
+		}
+		
+		catch(IOException e) {
+			e.printStackTrace();
+			System.out.println("error");
+		}
+	}
 	
 	public static ArrayList<ParkData> parseAll(){
 				
@@ -18,7 +62,7 @@ public class CsvParser {
 		//parse each file in data/parks folder
 		for (int i = 0; i < listOfFiles.length; i++) {
 		      if (listOfFiles[i].isFile()) {
-		    	  run(parks, listOfFiles[i].getPath());
+		    	  parsePark(parks, listOfFiles[i].getPath());
 		      }       
 		}
 		
@@ -30,7 +74,7 @@ public class CsvParser {
 		return parks;
 	}
 	
-  public static void run(ArrayList<ParkData> parks, String filename) {
+  public static void parsePark(ArrayList<ParkData> parks, String filename) {
 
 		String csvFile = filename;
 		BufferedReader br = null;

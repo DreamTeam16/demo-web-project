@@ -17,50 +17,18 @@
 <div id="chart"></div>
 
 	<script>
-		var num = parseInt('{{mapOfAllParks["Yosemite2007December"][4]}}', 10);
 		var chart = c3.generate({
 			bindto: '#chart',
 			
 		     data: {
-		        columns: [
-		            ['test', num],
-		            ['test2', 10]
-		        ],
+		        url: 'test.csv',
 		        type: 'bar'
 		    }
 
 		});
 	</script>
-		<p>parseInt("{{mapOfAllParks["Yosemite2007December"][4]}}", 10)</p>
-
-<table>
-    <tbody>
-        <tr ng-repeat="(k,v) in mapOfAllParks">
-            <td>{{ k }}</td>
-            <td>{{ v[4] }}</td>
-        </tr>
-    </tbody>
-</table>
-
-</div>
 
 <p>The response object has many properties. This example demonstrate the value of the data, status, and statusText properties.</p>
-
-<script>
-	var cs480App = angular.module('cs480App', []);
-
-	cs480App.controller('ParkCtrl', function ($scope, $http) {
-
-	$scope.mapAll = function() {
-		  $http.get("parkData")
-		  	.success(function(data){
-		  		$scope.mapOfAllParks = data;
-		  	});
-		}
-    $scope.mapAll();
-	});
-	
-</script>
 
 </body>
 </html>

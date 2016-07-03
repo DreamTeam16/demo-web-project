@@ -74,12 +74,13 @@ public class WebController {
 	
 	//test for parkMap
 	@RequestMapping(value = "/parkData", method = RequestMethod.GET)
-	public ArrayList<ParkData> parkMap() {
-		return CsvParser.parseAll();
+	public void parkMap() {
+		//
 	}
 	
 	@RequestMapping(value = "/parkPage", method = RequestMethod.GET)
 	public String parkPage() {
+		CsvParser.generateAllCSV(CsvParser.parseAll());
 		return "park-data.html";
 	}
 	

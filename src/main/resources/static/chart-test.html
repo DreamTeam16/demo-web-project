@@ -11,22 +11,41 @@
 
 	<body>
 	<p>Visitation data for Joshua Tree National Park</p>
-	
-		<div id="chart"></div>
 		
 		<script src="/js/c3/d3.min.js"></script>
 		<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
+		
+ 		<div id="chart"></div>
  		
 		<script>
 			var chart = c3.generate({
 				bindto: '#chart',
 				
-			     data: {
-			        columns: [
-			            ['January', 10]
-			        ],
+			    data: {
+			        url: '/data/parks/chart-data/test.csv',
 			        type: 'bar'
-			    }
+			    },
+			    
+			    bar: {
+			    	width: {
+			    		ratio: 1
+			    	}, 
+			    	title: "Joshua Tree"
+			    },
+			    
+				axis: {
+					y: { 
+						tick: {
+							format: d3.format(",")
+							}
+						},
+
+			    	x: {
+			    		tick: {
+			    			values: ['Average']
+			    			}
+			    		}
+			    	}
 
 			});
 		</script>
