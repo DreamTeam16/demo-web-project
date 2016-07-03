@@ -1,5 +1,6 @@
  package edu.csupomona.cs480.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import edu.csupomona.cs480.App;
 import edu.csupomona.cs480.data.CsvParser;
+import edu.csupomona.cs480.data.ParkData;
 import edu.csupomona.cs480.data.User;
 import edu.csupomona.cs480.data.provider.UserManager;
 
@@ -26,7 +28,7 @@ import edu.csupomona.cs480.data.provider.UserManager;
  *
  */
 
-@Controller
+@RestController
 public class WebController {
 
 	/**
@@ -71,9 +73,14 @@ public class WebController {
 	}
 	
 	//test for parkMap
-	@RequestMapping(value = "/parkMap", method = RequestMethod.GET)
-	public String parkMap() {
-		return "test " + CsvParser.mapAll();
+	@RequestMapping(value = "/parkData", method = RequestMethod.GET)
+	public ArrayList<ParkData> parkMap() {
+		return CsvParser.parseAll();
+	}
+	
+	@RequestMapping(value = "/parkPage", method = RequestMethod.GET)
+	public String parkPage() {
+		return "park-data.html";
 	}
 	
 	//Jason Zhang's HTTP API
