@@ -2,6 +2,10 @@ body {
   font-family: garamond;	
 }
 
+p {
+	text-align: center;
+}
+
 h1 {
 	text-align: center;
 	font-size: 60px;
@@ -19,13 +23,39 @@ h3 {
 	color: #333; 
 }
 
+.option {
+ 	width: 40%;
+	margin: auto;
+}
+
+.slider {
+	float: right;
+	width: 50%;
+}
+
+.slider-text { 
+	float: right;
+	width: 25%; 
+	margin: auto;
+}
+
 #search-field {
-	text-align: center;
 	margin: 40px 0px 30px 0px;
 }
 
+.double-chart-container {
+
+}
+	
 .chart-container { 
 	width: 48%; 
 	height: auto;
 	float: left;
+	margin-bottom: 10px;
+}
+
+.disclaimer {
+	clear: both;
+	font-style: italic;
+	margin-top: 300px;
 }

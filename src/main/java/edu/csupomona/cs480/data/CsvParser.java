@@ -25,7 +25,7 @@ public class CsvParser {
 			System.out.println("visitors in april: " + parks.get(i).getRecVisitors()[4]);
 		}
 		
-		String fileName = "src/main/resources/static/data/parks/chart-data/";
+		String fileName = "src/main/resources/static/data/parks/chart-data/visitor-data/";
 		fileName = fileName.concat(parks.get(index).getName()).concat(".csv");			
 		
 		System.out.println(parks.get(index).getName());
