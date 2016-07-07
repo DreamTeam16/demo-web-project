@@ -3,34 +3,52 @@
 	<head>
 	    <title>C3 Chart Demo</title>
 	    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	    <script src="/js/home-control.js"></script>
-
+	    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 		<link href="/js/c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
-  		
+		<link href="main.css" rel="stylesheet" type="text/css">
+  		<script src="/js/c3/d3.min.js"></script>
+		<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
 	</head>
 
-	<body>
-	<p>Visitation data for Joshua Tree National Park</p>
+	<body ng-app="">
+	<h2>[TRAVEL]<H2>
+	<h1>Just Right</h1>
+	<h2>You know where. We tell you when.</h2>
 		
-		<script src="/js/c3/d3.min.js"></script>
-		<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
-		
- 		<div id="chart"></div>
+ 		<p id="search-field">Enter destination: <input type="text" ng-model="name" id="numbers" placeholder="Enter national park"></p>
+ 		
+ 		<div class="double-chart-container"> 		
+ 			<div class="chart-container">
+		 		<div class="chart">
+					<h3>[Crowds] Average visitors by month</h3>
+			 		<div id="visitor-chart"></div>
+		 		</div>
+	 		</div>
+
+			<div class="chart-container">
+		 		<div class="chart">
+					<h3>[Weather] Average highs and lows by month</h3>
+			 		<div id="weather-chart"></div>
+		 		</div>
+	 		</div>
+	 	
+	 	</div>
  		
 		<script>
+		    $(".chart").hide(); 
+			
 			var chart = c3.generate({
-				bindto: '#chart',
+				bindto: '#visitor-chart',
 				
 			    data: {
-			        url: '/data/parks/chart-data/test.csv',
+			        url: '/data/parks/chart-data/Joshua Tree.csv',
 			        type: 'bar'
 			    },
 			    
 			    bar: {
 			    	width: {
 			    		ratio: 1
-			    	}, 
-			    	title: "Joshua Tree"
+			    	}
 			    },
 			    
 				axis: {
@@ -48,7 +66,70 @@
 			    	}
 
 			});
+
+			var chart2 = c3.generate({
+				bindto: '#weather-chart',
+				
+			    data: {
+			        url: '/data/parks/chart-data/Joshua Tree.csv',
+			        type: 'bar'
+			    },
+			    
+			    bar: {
+			    	width: {
+			    		ratio: 1
+			    	}
+			    },
+			    
+				axis: {
+					y: { 
+						tick: {
+							format: d3.format(",")
+							}
+						},
+
+			    	x: {
+			    		tick: {
+			    			values: ['Average']
+			    			}
+			    		}
+			    	}
+
+			});
+
 		</script>
+
+		
+		</select>
+		
+		<script>
+		  $('#numbers').change(function(){ 
+		  
+		    $(".chart").show(); 
+		    
+		    if($(this).val().toUpperCase() == "YOSEMITE"){
+		      chart.load({
+			        url: '/data/parks/chart-data/Yosemite.csv'
+			    });
+
+		      chart2.load({
+			        url: '/data/parks/chart-data/Yosemite.csv'
+			    });
+
+		    }
+		    if($(this).val().toUpperCase() == "JOSHUA TREE"){
+		      chart.load({
+			        url: '/data/parks/chart-data/Joshua Tree.csv'
+			    });
+
+		      chart2.load({
+			        url: '/data/parks/chart-data/Joshua Tree.csv'
+			    });
+			    
+		    }
+		});
+		</script>
+		
 	</body>
 
 </html>
