@@ -23,7 +23,7 @@ public class CsvParser {
 		for (int i = 0; i < parks.size(); i++) {
 			System.out.println("park name: " + parks.get(i).getName());
 			System.out.println("visitors in april: " + parks.get(i).getRecVisitors()[4]);
-		}
+		} 
 		
 		String fileName = "src/main/resources/static/data/parks/chart-data/visitor-data/";
 		fileName = fileName.concat(parks.get(index).getName()).concat(".csv");			

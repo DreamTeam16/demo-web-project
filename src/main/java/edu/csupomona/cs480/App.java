@@ -13,7 +13,7 @@ import edu.csupomona.cs480.data.provider.UserManager;
 @EnableAutoConfiguration
 @ComponentScan
 public class App {
-
+ 
     /**
      * This is a good example of how Spring instantiates
      * objects. The instances generated from this method

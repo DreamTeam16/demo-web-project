@@ -94,7 +94,7 @@ public class WebController {
 	}
 	
 	//Jason Zhang's Method for Assignment #4
-	@RequestMapping(value = "/commonsmath", method = RequestMethod.GET)
+	@RequestMapping(value = "/cmath", method = RequestMethod.GET)
 	public String assignment4() {
 		String jzpage ="commonsmath.html";
 		return jzpage;
