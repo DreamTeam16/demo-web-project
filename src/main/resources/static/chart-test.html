@@ -22,11 +22,25 @@
   
 	<script>
 		$(function() {
-			$("#slider1").slider();
+			$("#slider1").slider({
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 50
+			});
 		});
 
 		$(function() {
-			$("#slider2").slider();
+			$("#slider2").slider({
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 70,
+				slide: function(event, ui) {
+					$("#amount").val(ui.value);
+				}
+			});
+			$("#amount").val( $("#slider2").slider("value"));
 		});
 
 	</script>
@@ -38,28 +52,28 @@
 <h1>Just Right</h1>
 <h2>You know where. We tell you when.</h2>
 		
-<p id="search-field">Enter destination*: <input type="text" ng-model="name" id="numbers" placeholder="Enter national park"></p>
+<p id="search-field">Enter destination*: <input type="text" ng-model="name" id="parkName" placeholder="Enter national park"></p>
 
 <div class="sliders-container">
 
 	<div class="option">
 		<p>How do you feel about crowds?</p>
-		<p class="slider-text">Dislike&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		<p class="slider-text">Dislike&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 		<div class="slider">
 			<div id="slider1"></div>
 		</div>
-		<p class="slider-text">Don't mind<p/>
+		<p class="slider-text">Don't mind <p/>
 	</div>
 	
 	<div style="clear: both;"></div>
 	
-	<div class="option">
-		<p>What's your ideal weather?</p>
-		<p class="slider-text">Warm</p>
+	<div class="option2">
+		<p>What's your ideal temperature?</p>
+		<div id="temp_field"><input type="text" id="amount">&deg; F</div>
 		<div class="slider">
 			<div id="slider2"></div>
 		</div>
-		<p class="slider-text">Cool<p/>
+		
 	</div>
 	
 	<div style="clear: both;"></div>
@@ -116,6 +130,7 @@
 
 	});
 
+	
 	var chart2 = c3.generate({
 		bindto: '#weather-chart',
 		
@@ -129,31 +144,22 @@
 		},
 	    
 	});
-
-	  $('#numbers').change(function(){ 
+	
+	$('#parkName').change(function(){ 
 	  
-	    $(".chart").show(); 
-	    
-	    if($(this).val().toUpperCase() == "YOSEMITE"){
-	      chart.load({
-		        url: '/data/parks/chart-data/visitor-data/Yosemite.csv'
-		    });
-
-	      chart2.load({
-		        url: '/data/parks/chart-data/weather-data/Yosemite.csv'
-		    });
-
-	    }
-	    if($(this).val().toUpperCase() == "JOSHUA TREE"){
-	      chart.load({
-		        url: '/data/parks/chart-data/visitor-data/Joshua Tree.csv'
-		    });
-
-	      chart2.load({
-		        url: '/data/parks/chart-data/weather-data/Joshua Tree.csv'
-		    });
+		var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
+		var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
+		  
+		$(".chart").show(); 
 		    
-	    }
+	    chart.load({
+	        url: visitorData
+	    });
+		
+	    chart2.load({
+	        url: weatherData
+	    });
+	  
 	});
 	
 </script>

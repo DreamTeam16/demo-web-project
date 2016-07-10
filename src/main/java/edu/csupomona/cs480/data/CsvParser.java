@@ -10,6 +10,10 @@ import java.util.ArrayList;
 
 public class CsvParser {
 	
+	public static void generateFilePath(String park) {
+		
+	}
+	
 	//generates all CSV files for charts
 	public static void generateAllCSV(ArrayList<ParkData> parks) {
 		for (int i = 0; i < parks.size(); i++) {
