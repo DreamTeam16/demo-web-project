@@ -10,10 +10,10 @@ import org.jsoup.select.Elements;
 
 public class WeatherParser {
 	
-	public static void main(String[] args) {
-		JSTreeWeatherParser();
-		yosemiteWeatherParser();
-	}
+	//public static void main(String[] args) {
+		//JSTreeWeatherParser();
+		//yosemiteWeatherParser();
+	//}
 	
 	//Parse Joshua Tree Weather highs/lows
 	public static void JSTreeWeatherParser() {

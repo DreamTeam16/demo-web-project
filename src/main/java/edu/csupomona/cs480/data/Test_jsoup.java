@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 
 public class Test_jsoup {
 	
-	 public static void main(String[] args) {
+	 public void jsoup() {
 
 	        Document doc;
 	        try {

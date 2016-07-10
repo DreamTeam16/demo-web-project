@@ -10,7 +10,7 @@ import java.util.Random;
 
 public class CommonsMath {
 
-	 public static void main(String[] args) {
+	 public void cmathtest() {
 
 		 DescriptiveStatistics stats = new DescriptiveStatistics();
 		 Random rand = new Random();
