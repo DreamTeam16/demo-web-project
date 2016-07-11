@@ -10,10 +10,6 @@ import java.util.ArrayList;
 
 public class CsvParser {
 	
-	public static void generateFilePath(String park) {
-		
-	}
-	
 	//generates all CSV files for charts
 	public static void generateAllCSV(ArrayList<ParkData> parks) {
 		for (int i = 0; i < parks.size(); i++) {
@@ -39,12 +35,13 @@ public class CsvParser {
 			FileWriter writer = new FileWriter(fileName);
 			System.out.println("success");
 			
-			writer.append("January, February, March, April, May, June, July, August, September, October, November, December\n");
+			writer.append("Average Monthly Visitors\n");
+			writer.append("Null\n");
 			
 			for(int i = 1; i < 13; i++) {
 				writer.append(Integer.toString(parks.get(index).getRecVisitors()[i]));
 				if(i != 12)
-					writer.append(",");
+					writer.append("\n");
 			}
 
 			writer.flush();
