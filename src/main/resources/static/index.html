@@ -1,13 +1,169 @@
 <html>
-	<!-- This page will be shown when you git the root URL -->
-	<head>
-	    <title>CS480 Demo HomePage</title>
-	    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-	    <script src="/js/home-control.js"></script>
-	</head>
+<!-- This page will be shown when you git the root URL -->
+<head>
+    <title>[Travel] Just Right</title>
+    
+    <!-- miscellaneous js -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-	<body onload="healthCheck();">
-		Demo Project is running: <label id="status"></label>
-	</body>
+	<!-- site-wide custom css -->
+	<link href="main.css" rel="stylesheet" type="text/css">
+	
+	<!-- for charts -->
+	<link href="/js/c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
+	<script src="/js/c3/d3.min.js"></script>
+	<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
+	
+	<!-- for slider -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+  
+	<script>
+		$(function() {
+			$("#slider1").slider({
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 50
+			});
+		});
+
+		$(function() {
+			$("#slider2").slider({
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 70,
+				slide: function(event, ui) {
+					$("#amount").val(ui.value);
+				}
+			});
+			$("#amount").val( $("#slider2").slider("value"));
+		});
+
+	</script>
+</head>
+
+<body ng-app="">
+
+<h2>[TRAVEL]<H2>
+<h1>Just Right</h1>
+<h2>You know where. We tell you when.</h2>
+		
+<p id="search-field">Enter destination*: <input type="text" ng-model="name" id="parkName" placeholder="Enter national park"></p>
+
+<div class="sliders-container">
+
+	<div class="option">
+		<p>How do you feel about crowds?</p>
+		<p class="slider-text">Dislike&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		<div class="slider">
+			<div id="slider1"></div>
+		</div>
+		<p class="slider-text">Don't mind <p/>
+	</div>
+	
+	<div style="clear: both;"></div>
+	
+	<div class="option2">
+		<p>What's your ideal temperature?</p>
+		<div id="temp_field"><input type="text" id="amount">&deg; F</div>
+		<div class="slider">
+			<div id="slider2"></div>
+		</div>
+		
+	</div>
+	
+	<div style="clear: both;"></div>
+	
+</div>
+
+<div style="clear: both;"></div>
+
+<div class="double-chart-container">
+
+	<h2 class="chart">Go in June.</h2>
+				 		
+	<div class="chart-container">
+ 		<div class="chart">
+			<h3>[Crowds]</h3>
+	 		<div id="visitor-chart"></div>
+ 		</div>
+	</div>
+
+	<div class="chart-container">
+ 		<div class="chart">
+			<h3>[Weather]</h3>
+	 		<div id="weather-chart"></div>
+ 		</div>
+	</div>
+
+</div>
+
+<p class="disclaimer">*Presently, we only support recommendations for America's 59 national parks. More destinations to come.</p>
+
+<script>
+	
+    $(".chart").hide(); 
+	
+	var chart = c3.generate({
+		bindto: '#visitor-chart',
+		
+	    data: {
+	        url: '/data/parks/chart-data/visitor-data/Joshua Tree.csv',
+	        type: 'bar'
+	    },
+	    
+	    color: {
+					pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+		},
+	    
+		axis: {
+			y: { 
+				tick: {
+					format: d3.format(",")
+					}
+				}
+	    	}
+
+	});
+
+	
+	var chart2 = c3.generate({
+		bindto: '#weather-chart',
+		
+	    data: {
+	        url: '/data/parks/chart-data/weather-data/Joshua Tree.csv',
+	        type: 'bar'
+	    },
+	    
+	    color: {
+			pattern: ['#d62728', '#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+		},
+	    
+	});
+	
+	$('#parkName').change(function(){ 
+	  
+		var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
+		var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
+		  
+		$(".chart").show(); 
+		    
+	    chart.load({
+	        url: visitorData
+	    });
+		
+	    chart2.load({
+	        url: weatherData
+	    });
+	  
+	});
+	
+</script>
+		
+</body>
 
 </html>
