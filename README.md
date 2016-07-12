@@ -23,7 +23,7 @@ Building the Project for the First Time
 ---------------------------------------
 1. Right-click on the project root folder->Maven->Update Project
 
-Running the Project Locally
+Running the Project Locally  
 ----------------------------------------
 1. Locate the App.java in src/main/java source folder and right-click on it->Run As->Java Application
 2. Verify the running process in your web browser by the following URLs:
