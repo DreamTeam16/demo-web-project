@@ -36,7 +36,7 @@ public class CsvParser {
 			System.out.println("success");
 			
 			writer.append("Average Monthly Visitors\n");
-			writer.append("Null\n");
+			writer.append("null\n");
 			
 			for(int i = 1; i < 13; i++) {
 				writer.append(Integer.toString(parks.get(index).getRecVisitors()[i]));
