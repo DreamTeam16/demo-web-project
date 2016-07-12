@@ -10,16 +10,20 @@ import org.jsoup.select.Elements;
 
 public class WeatherParser {
 	
-	//public static void main(String[] args) {
-		//JSTreeWeatherParser();
-		//yosemiteWeatherParser();
-	//}
+//	public static void main(String[] args) {
+//		JSTreeWeatherParser();
+//		yosemiteWeatherParser();
+//	}
 	
 	//Parse Joshua Tree Weather highs/lows
-	public static void JSTreeWeatherParser() {
-		String[] highs = new String[12];
-		String[] lows = new String[12];
+	public String JSTreeWeatherParser() {
+		int[] highs = new int[12];
+		int[] lows = new int[12];
 
+		String temp = "";
+		String lowtemps = "";
+
+		
 		Document doc;
 		try {
 			doc = Jsoup.connect("http://www.usclimatedata.com/climate/joshua-tree/california/united-states/usca1645").get();
@@ -28,7 +32,7 @@ public class WeatherParser {
 			
 			int i = 0;
 			 for (Element hightemp : highTemperatures) {
-				 highs[i] = hightemp.text();
+				 highs[i] = Integer.parseInt(hightemp.text());
 				 System.out.println(highs[i]);
 //	         	System.out.println("#" + i + ": " + hightemp.text());
 	         	i++;
@@ -39,7 +43,7 @@ public class WeatherParser {
 			 
 			 i = 0;
 			 for (Element coldtemp : lowTemperatures) {
-				lows[i] = coldtemp.text();
+				lows[i] = Integer.parseInt(coldtemp.text());
 //	         	System.out.println("#" + i + ": " + coldtemp.text());
 	         	i++;
 	         	if (i == 12) {
@@ -50,23 +54,22 @@ public class WeatherParser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		 
 		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Joshua Tree.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			fw.write("January, February, March, April, May, June, July, August, September, October, November, December\n");
-			String temp = "";
 			for (int i = 0; i < highs.length; i++) {
 				temp += highs[i];
-				if (highs[i] != null) {
+				if (i != highs.length-1) {
 					temp += ", ";
 				}
 			}
+//			System.out.println(temp);
 			fw.write(temp + "\n");
-			String lowtemps = "";
 			for (int i = 0; i < lows.length; i++) {
 				lowtemps += lows[i];
-				if (lows[i] != null) {
+				if (i != highs.length-1) {
 					lowtemps += ", ";
 				}
 			}
@@ -75,13 +78,16 @@ public class WeatherParser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		return "Highs: " + temp + "\n" + "Lows: " + lowtemps;
 	}
 	
-	
-	public static void yosemiteWeatherParser() {
-		String[] highs = new String[12];
-		String[] lows = new String[12];
+	 
+	public String yosemiteWeatherParser() {
+		int[] highs = new int[12];
+		int[] lows = new int[12];
+		
+		String temp = "";
+		String lowtemps = "";
 		
 		Document doc;
 		try {
@@ -91,7 +97,7 @@ public class WeatherParser {
 			
 			int i = 0;
 			 for (Element hightemp : highTemperatures) {
-				highs[i] = hightemp.text();
+				highs[i] = Integer.parseInt(hightemp.text());
 //	         	System.out.println("#" + i + ": " + hightemp.text());
 	         	i++;
 	         	if (i == 12) {
@@ -101,7 +107,7 @@ public class WeatherParser {
 			 
 			 i = 0;
 			 for (Element coldtemp : lowTemperatures) {
-				lows[i] = coldtemp.text();
+				lows[i] = Integer.parseInt(coldtemp.text());
 //	         	System.out.println("#" + i + ": " + coldtemp.text());
 	         	i++;
 	         	if (i == 12) {
@@ -116,18 +122,16 @@ public class WeatherParser {
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			fw.write("January, February, March, April, May, June, July, August, September, October, November, December\n");
-			String temp = "";
 			for (int i = 0; i < highs.length; i++) {
 				temp += highs[i];
-				if (highs[i] != null) {
+				if (i != highs.length-1) {
 					temp += ", ";
 				}
 			}
 			fw.write(temp + "\n");
-			String lowtemps = "";
 			for (int i = 0; i < lows.length; i++) {
 				lowtemps += lows[i];
-				if (lows[i] != null) {
+				if (i != lows.length-1) {
 					lowtemps += ", ";
 				}
 			}
@@ -136,7 +140,7 @@ public class WeatherParser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		return "Highs: " + temp + "\n" + "Lows: " + lowtemps;
 	}
 
 }
