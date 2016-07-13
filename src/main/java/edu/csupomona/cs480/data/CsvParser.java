@@ -97,8 +97,10 @@ public class CsvParser {
 			while ((line = br.readLine()) != null) {
 				String[] month = line.split(cvsSplitBy);
 				
-				if(counter == 0)					
+				if(counter == 0) {					
 					park.setName(month[1]);
+					counter++;
+				}
 				
 				//generate totals for each category for each month
 				switch(month[3]) 
