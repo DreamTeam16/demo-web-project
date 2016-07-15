@@ -65,6 +65,10 @@ h3 {
 	text-align: center;
 }
 
+#rec-text {
+	margin-top: 40px;
+}
+	
 .double-chart-container {
 
 }
@@ -79,5 +83,5 @@ h3 {
 .disclaimer {
 	clear: both;
 	font-style: italic;
-	margin-top: 300px;
+	margin-top: 250px;
 }

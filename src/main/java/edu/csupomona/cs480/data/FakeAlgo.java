@@ -4,12 +4,14 @@ public class FakeAlgo {
 	
 	public int[] rankings;
 	public String month;
+	public String name;
 	
 	public void generateRankings(ParkData park, int prefCrowds, int prefTemp){
+		this.name = park.getName();
 		this.rankings = new int[13]; //1 for each month, skipping 0 index (for chart purposes)
 		int[] visitors = park.getRecVisitors();
-		int[] lows = { 0, 50, 50, 60, 62, 73, 75, 76, 80, 81, 75, 70, 60, 51 }; //park.getHighs();
-		int[] highs = { 0, 60, 50, 70, 74, 83, 85, 86, 80, 85, 85, 80, 70, 61 }; //park.getLows();
+		int[] lows = { 0, 50, 50, 60, 62, 73, 75, 100, 80, 81, 75, 70, 60, 51 }; //park.getHighs();
+		int[] highs = { 0, 60, 50, 70, 74, 83, 85, 100, 80, 85, 85, 80, 70, 61 }; //park.getLows();
 		int minVisitors = visitors[1];
 		
 		for(int i = 2; i < 13; i++){
@@ -17,12 +19,9 @@ public class FakeAlgo {
 				minVisitors = visitors[i];
 		}
 		
-		prefTemp = 70;
-		prefCrowds = 100;
-		
 		for(int i = 1; i < 13; i++){
 			//ranks each month; the lower, the better
-			rankings[i] = Math.abs(prefTemp - ((highs[i] + lows[i]) / 2)) + (visitors[i] - minVisitors + 1) / prefCrowds;
+			rankings[i] = Math.abs(prefTemp - ((highs[i] + lows[i]) / 2));
 		}
 
 		int min = rankings[1];

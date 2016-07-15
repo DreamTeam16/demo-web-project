@@ -72,11 +72,11 @@ public class WebController {
 	
 	//returns recommended month to visit
 	@RequestMapping(value = "/getRec", method = RequestMethod.GET)
-	public FakeAlgo getRec() {
-		System.out.println("getRec called");
-		ParkData park = CsvParser.parsePark("Yosemite"); 
+	public FakeAlgo getRec(String parkName, int prefCrowds, int prefTemp) {
+		System.out.println("getRec called. parkname: " + parkName + ". crowds pref: " + prefCrowds + ". temp pref: " + prefTemp);
+		ParkData park = CsvParser.parsePark(parkName); 
 		FakeAlgo rec = new FakeAlgo();
-		rec.generateRankings(park, 70, 50);
+		rec.generateRankings(park, prefCrowds, prefTemp);
 		return rec;
 	}
 	
