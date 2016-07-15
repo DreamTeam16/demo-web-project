@@ -171,14 +171,111 @@ public class CsvParser {
 			}
 		}		
 		
-		//generate averages for each month for each category
-		for(int i = 0; i < 13; i++){
-			recVisitors[i] = recVisitors[i] / numYears;
-		}
-		
 		//add park object to arrayList
 		park.setRecVisitors(recVisitors);
 		parks.add(park);
 		
   }
+  
+  public static ParkData parsePark(String parkName) {
+	  
+		String csvFile = "src/main/resources/static/data/parks/" + parkName + ".csv";
+		BufferedReader br = null;
+		String line = "";
+		String cvsSplitBy = ",";
+		ParkData park = new ParkData();	
+		int counter = 0;
+		int[] recVisitors = new int[13]; 
+		
+		for(int i = 0; i < 13; i++){
+			recVisitors[i] = 0;
+		}
+		
+		try {
+			br = new BufferedReader(new FileReader(csvFile));
+			
+			//parse park csv data line by line
+			while ((line = br.readLine()) != null) {
+				String[] month = line.split(cvsSplitBy);
+				
+				if(counter == 0) {					
+					park.setName(month[1]);
+					counter++;
+				}
+				
+				//generate totals for each category for each month
+				switch(month[3]) 
+				{
+					case "January" :
+						recVisitors[1] += Integer.parseInt(month[4]);
+						break;
+						
+					case "February" :
+						recVisitors[2] += Integer.parseInt(month[4]);
+						break; 
+						
+					case "March" :
+						recVisitors[3] += Integer.parseInt(month[4]);
+						break;
+						
+					case "April" :
+						recVisitors[4] += Integer.parseInt(month[4]);
+						break;
+						
+					case "May" :
+						recVisitors[5] += Integer.parseInt(month[4]);
+						break;
+						
+					case "June" :
+						recVisitors[6] += Integer.parseInt(month[4]);
+						break;
+						
+					case "July" :
+						recVisitors[7] += Integer.parseInt(month[4]);
+						break;
+						
+					case "August" :
+						recVisitors[8] += Integer.parseInt(month[4]);
+						break;
+						
+					case "September" :
+						recVisitors[9] += Integer.parseInt(month[4]);
+						break;
+						
+					case "October" :
+						recVisitors[10] += Integer.parseInt(month[4]);
+						break;
+						
+					case "November" :
+						recVisitors[11] += Integer.parseInt(month[4]);
+						break;
+						
+					case "December" :
+						recVisitors[12] += Integer.parseInt(month[4]);
+						break;
+				}
+								
+				
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}		
+		
+		//add park object to arrayList
+		park.setRecVisitors(recVisitors);
+		
+		return park;
+  }
+  
 }

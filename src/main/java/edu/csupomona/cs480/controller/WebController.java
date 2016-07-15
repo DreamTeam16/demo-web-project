@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.csupomona.cs480.App;
-import edu.csupomona.cs480.data.CsvParser;
-import edu.csupomona.cs480.data.ParkData;
-import edu.csupomona.cs480.data.User;
+import edu.csupomona.cs480.data.*;
 import edu.csupomona.cs480.data.provider.UserManager;
 
 
@@ -68,14 +66,18 @@ public class WebController {
 
 	//Jason La's method for assignment #4
 	@RequestMapping(value = "/graph", method = RequestMethod.GET)
-	public String chart() {
-		return "chart-test.html";
+	public void chart(String name1, String name2) {
+		;
 	}
 	
-	//test for parkMap
-	@RequestMapping(value = "/parkData", method = RequestMethod.GET)
-	public void parkMap() {
-		//
+	//returns recommended month to visit
+	@RequestMapping(value = "/getRec", method = RequestMethod.GET)
+	public FakeAlgo getRec() {
+		System.out.println("getRec called");
+		ParkData park = CsvParser.parsePark("Yosemite"); 
+		FakeAlgo rec = new FakeAlgo();
+		rec.generateRankings(park, 70, 50);
+		return rec;
 	}
 	
 	@RequestMapping(value = "/parkPage", method = RequestMethod.GET)

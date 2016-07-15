@@ -44,25 +44,47 @@
 		});
 
 	</script>
+	
+	<!-- for angular JS to get recommendation -->
+	<script>
+	var cs480App = angular.module('cs480App', []);
+
+	cs480App.controller('recCtrl', function ($scope, $http) {
+
+	  $scope.getRec = function() {
+		  $http.get("getRec")
+			.success(function(data){
+				$scope.rec = data;
+			});
+	  }
+
+	});
+	</script>
+
 </head>
 
-<body ng-app="">
+<body ng-app="cs480App" ng-controller="recCtrl">
 
 <h2>[TRAVEL]<H2>
 <h1>Just Right</h1>
 <h2>You know where. We tell you when.</h2>
-		
-<p id="search-field">Enter destination*: <input type="text" ng-model="name" id="parkName" placeholder="Enter national park"></p>
 
+<div id="search-field">		
+	<form ng-submit="getRec()">
+	    <input type="text" placeholder="Enter national park*" id="parkName"> 
+	    <input type="submit" value="Submit" onclick="updateCharts()">
+	</form>
+</div>
+  
 <div class="sliders-container">
 
 	<div class="option">
 		<p>How do you feel about crowds?</p>
-		<p class="slider-text">Dislike&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+		<p class="slider-text">Don't mind</p>
 		<div class="slider">
 			<div id="slider1"></div>
 		</div>
-		<p class="slider-text">Don't mind <p/>
+		<p class="slider-text">Dislike them<p/>
 	</div>
 	
 	<div style="clear: both;"></div>
@@ -84,7 +106,7 @@
 
 <div class="double-chart-container">
 
-	<h2 class="chart">Go in June.</h2>
+	<h2 class="chart">Go in {{rec.month}}.</h2>
 				 		
 	<div class="chart-container">
  		<div class="chart">
@@ -145,8 +167,8 @@
 	    
 	});
 	
-	$('#parkName').change(function(){ 
-	  
+	function updateCharts() {
+	
 		var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
 		var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
 		  
@@ -160,10 +182,9 @@
 	        url: weatherData
 	    });
 	  
-	});
+	}
 	
 </script>
-		
 </body>
 
 </html>
