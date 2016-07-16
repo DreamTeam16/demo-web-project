@@ -67,6 +67,75 @@
 
 	});
 	</script>
+	
+	<script>
+	  $( function() {
+	    var availableTags = [
+		    "Acadia National Park",
+			"Arches National Park",
+			"Badlands National Park",
+			"Big Bend National Park",
+			"Biscayne National Park",
+			"Black Canyon of the Gunnison National Park",
+			"Bryce Canyon National Park",
+			"Canyonlands National Park",
+			"Capitol Reef National Park",
+			"Carlsbad Caverns National Park",
+			"Channel Islands National Park",
+			"Congaree National Park",
+			"Crater Lake National Park",
+			"Cuyahoga Valley National Park",
+			"Death Valley National Park",
+			"Denali National Park & Preserve",
+			"Dry Tortugas National Park",
+			"Everglades National Park",
+			"Gates of the Arctic National Park",
+			"Glacier Bay National Park",
+			"Glacier National Park",
+			"Grand Canyon National Park",
+			"Grand Teton National Park",
+			"Great Basin National Park",
+			"Great Sand Dunes National Park and Preserve",
+			"Great Smoky Mountains National Park",
+			"Guadalupe Mountains National Park",
+			"Haleakala National Park",
+			"Hawaii Volcanoes National Park",
+			"Hot Springs National Park",
+			"Isle Royale National Park",
+			"Joshua Tree National Park",
+			"Katmai National Park and Preserve",
+			"Kenai Fjords National Park",
+			"Kings Canyon National Park",
+			"Kobuk Valley National Park",
+			"Lake Clark National Park",
+			"Lassen Volcanic National Park",
+			"Mammoth Cave National Park",
+			"Mesa Verde National Park",
+			"Mount Rainier National Park",
+			"National Park of American Samoa",
+			"North Cascades National Park",
+			"Olympic National Park",
+			"Petrified Forest National Park",
+			"Pinnacles National Park",
+			"Redwood National Park",
+			"Rocky Mountain National Park",
+			"Saguaro National Park",
+			"Sequoia National Park",
+			"Shenandoah National Park",
+			"Theodore Roosevelt National Park",
+			"Virgin Islands National Park",
+			"Voyageurs National Park",
+			"Wind Cave National Park",
+			"Wrangell St. Elias National Park and Preserve",
+			"Yellowstone National Park",
+			"Yosemite National Park",
+			"Zion National Park"
+	    ];
+	    $( "#parkName" ).autocomplete({
+	      source: availableTags
+	    });
+	  } );
+  </script>
 
 </head>
 
@@ -76,10 +145,10 @@
 <h1>Just Right</h1>
 <h2>You know where. We tell you when.</h2>
 
-<div id="search-field">		
+<div id="search-field" class="ui-widget">		
 	<form ng-submit="getRec()">
-	    <input type="text" placeholder="Enter national park*" id="parkName"> 
-	    <input type="submit" value="Submit" onclick="updateCharts()">
+	    <input type="text" placeholder="Enter national park*" id="parkName" class="input-field"> 
+	    <input type="submit" value="Submit" onclick="updateCharts()" class="button">
 	</form>
 </div>
   
@@ -98,7 +167,7 @@
 	
 	<div class="option2">
 		<p>What's your ideal temperature?</p>
-		<div id="temp_field"><input type="text" id="amount">&deg; F</div>
+		<div id="temp_field"><input type="text" id="amount" class="input-field">&deg; F</div>
 		<div class="slider">
 			<div id="slider2"></div>
 		</div>
@@ -113,18 +182,18 @@
 
 <div class="double-chart-container">
 
-	<h2 class="chart" id="rec-text">Go to {{rec.name}} in {{rec.month}}</h2>
+	<p class="chart" id="rec-text">Go to {{rec.name}} in {{rec.month}}</p>
 				 		
 	<div class="chart-container">
  		<div class="chart">
-			<h3>[Crowds]</h3>
+			<p>[Crowds]</p>
 	 		<div id="visitor-chart"></div>
  		</div>
 	</div>
 
 	<div class="chart-container">
  		<div class="chart">
-			<h3>[Weather]</h3>
+			<p>[Weather]</p>
 	 		<div id="weather-chart"></div>
  		</div>
 	</div>
@@ -141,7 +210,7 @@
 		bindto: '#visitor-chart',
 		
 	    data: {
-	        url: '/data/parks/chart-data/visitor-data/Joshua Tree.csv',
+	        url: '/data/parks/chart-data/visitor-data/Joshua Tree National Park.csv',
 	        type: 'bar'
 	    },
 	    
