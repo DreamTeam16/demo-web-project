@@ -50,13 +50,20 @@
 	var cs480App = angular.module('cs480App', []);
 
 	cs480App.controller('recCtrl', function ($scope, $http) {
-
-	  $scope.getRec = function() {
-		  $http.get("getRec")
+		 				
+	$scope.getRec = function() {
+	
+		var myParams = { 
+			parkName: String($("#parkName").val()),
+			prefCrowds: $("#slider1").slider("value"),
+			prefTemp: $("#slider2").slider("value")
+		}
+		
+		$http.get("getRec", { params: myParams } )
 			.success(function(data){
 				$scope.rec = data;
-			});
-	  }
+		});
+	}
 
 	});
 	</script>
@@ -106,7 +113,7 @@
 
 <div class="double-chart-container">
 
-	<h2 class="chart">Go in {{rec.month}}.</h2>
+	<h2 class="chart" id="rec-text">Go to {{rec.name}} in {{rec.month}}</h2>
 				 		
 	<div class="chart-container">
  		<div class="chart">

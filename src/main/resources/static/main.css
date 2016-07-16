@@ -4,6 +4,9 @@ body {
 
 p {
 	text-align: center;
+	font-family: tahoma;
+	font-size: 16px;
+	color: #222;
 }
 
 h1 {
@@ -23,6 +26,12 @@ h3 {
 	color: #333; 
 }
 
+.button { 
+	border-radius: 4px;
+	border-width: 1px;
+	padding: 2px 4px 2px 4px;
+}
+	
 .option {
  	width: 40%;
 	margin: auto;
@@ -46,6 +55,12 @@ h3 {
 	margin: auto;
 }
 
+input[type=text] {
+    border: 1px solid #aaaaaa;
+	  padding: 2px;
+    border-radius: 4px;
+}
+
 #amount {
   width: 20%;	
 	height: 20px;
@@ -67,6 +82,7 @@ h3 {
 
 #rec-text {
 	margin-top: 40px;
+	font-size: 20px;
 }
 	
 .double-chart-container {
@@ -83,5 +99,6 @@ h3 {
 .disclaimer {
 	clear: both;
 	font-style: italic;
+	font-size: 10px;
 	margin-top: 250px;
 }
