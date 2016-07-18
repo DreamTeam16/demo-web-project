@@ -186,6 +186,7 @@ public class CsvParser {
 		ParkData park = new ParkData();	
 		int counter = 0;
 		int[] recVisitors = new int[13]; 
+		park.setName(parkName);
 		
 		for(int i = 0; i < 13; i++){
 			recVisitors[i] = 0;
@@ -255,7 +256,7 @@ public class CsvParser {
 						break;
 				}
 								
-				
+			
 			}
 
 		} catch (FileNotFoundException e) {
