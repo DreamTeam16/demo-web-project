@@ -204,7 +204,8 @@
 <div class="double-chart-container"> 
 
 	<p class="chart" id="rec-text">Go to {{rec.name}} in {{rec.month}}</p>
-				 		
+	<p id="not-found-text">The destination you entered was not found. Please try again.</p>
+					 		
 	<div class="chart-container">
  		<div class="chart">
 			<p>[Crowds]</p>
@@ -224,9 +225,16 @@
 <p class="disclaimer">*Presently, we only support recommendations for America's 59 national parks. More destinations to come.</p>
 
 <script>
+/*
+	window.onerror = function() {
+	    $(".chart").hide(); 
+	    $("#not-found-text").show();
+	};
+*/	
 	
     $(".chart").hide(); 
-	
+    $("#not-found-text").hide(); 
+    	
 	var chart = c3.generate({
 		bindto: '#visitor-chart',
 		
@@ -236,7 +244,7 @@
 	    },
 	    
 	    color: {
-					pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+			pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
 		},
 	    
 		axis: {
@@ -268,17 +276,17 @@
 	
 		var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
 		var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
-		  
-		$(".chart").show(); 
-		    
+
 	    chart.load({
 	        url: visitorData
 	    });
-		
+	    		
 	    chart2.load({
 	        url: weatherData
 	    });
-	  
+
+		$(".chart").show(); 
+									  
 	}
 	
 </script>
