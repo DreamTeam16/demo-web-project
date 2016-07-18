@@ -32,12 +32,25 @@ h3 {
 	padding: 2px 4px 2px 4px;
 }
 	
-	
+.chart-container { 
+	width: 48%; 
+	height: auto;
+	float: left;
+	margin-bottom: 10px;
+}
+
+#search-field {
+	margin: 40px auto 30px auto;
+	width: 40%;
+	text-align: center;
+}	
+
 .option {
- 	width: 100%;
+ 	width: 40%;
 	margin: auto;
 	margin-bottom: 60px;
 }
+		
 
 .slider {
 	float: right;
@@ -70,11 +83,6 @@ input[type=text] {
 	width: 30%;
 }
 
-#search-field {
-	margin: 40px auto 30px auto;
-	width: 100%;
-	text-align: center;
-}
 
 #rec-text {
 	margin-top: 80px;
@@ -90,17 +98,17 @@ input[type=text] {
 
 }
 
-.chart-container { 
-	width: 100%; 
-	height: auto;
-	float: left;
-	margin-bottom: 10px;
-}
 	
-@media only screen and (min-width: 768px) {
+@media only screen and (max-width: 768px) {
 
+	.option {
+	 	width: 100%;
+		margin: auto;
+		margin-bottom: 60px;
+	}
+		
 	.chart-container { 
-		width: 48%; 
+		width: 100%; 
 		height: auto;
 		float: left;
 		margin-bottom: 10px;
@@ -108,14 +116,8 @@ input[type=text] {
 	
 	#search-field {
 		margin: 40px auto 30px auto;
-		width: 40%;
+		width: 100%;
 		text-align: center;
-	}	
-	
-	.option {
-	 	width: 40%;
-		margin: auto;
-		margin-bottom: 60px;
 	}
 
 }
