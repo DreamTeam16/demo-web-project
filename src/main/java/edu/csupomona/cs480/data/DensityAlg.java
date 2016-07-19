@@ -3,14 +3,17 @@ import java.util.*;
 import java.lang.Math;
 public class DensityAlg {
 	 ParkData current;
-	 String name;
+	 public	 String name;
 	 int[] visitors;
+	 float[] average;
 	 int userPref;
-	 String month;
+	 public	 String month;
 	 
 	 public DensityAlg(ParkData park,int userPref )
 	 {
 		current= park;
+		average= new float[13];
+		name=current.getName();
 		visitors=park.getRecVisitors();
 		this.userPref=userPref;
 		month="FAIL";
@@ -22,32 +25,60 @@ public class DensityAlg {
 	 {
 		 for(int i=0; i<visitors.length; i++)
 		 {
-			 visitors[i]=visitors[i]/10;
+			 average[i]=(float)visitors[i]/10;
 		 }
 	 }
-	 private int getPref()
+	 private float getPref()
 	 {
-		 int[] rSort= visitors.clone();
+		 float[] rSort= average.clone();
 		 Arrays.sort(rSort);
 		 return rSort[userPref];
 		
 		 
 	 }
+	 /*
+	 private float stdDev()
+	 {
+		float mean= stdMean();
+		
+		for(int i=1;i<13;i++)
+		{
+			
+		}
+		 
+	 }
 	 
+	 private float stdMean()
+	 {
+		 float mean=0;
+		 for(int i=1;i<average.length;i++)
+		 {
+			 mean=+average[i];
+		 }
+		 
+		 return (mean/12);
+	 }
+	 */
 	 
 	 public void getDensityRankings() // Suppose to be string array testing right now.
 	 {
-		 int pref=getPref();
-		 int[] differences= new int[13];
+		 float pref=getPref();
+		 float[] differences= new float[13];
 		 String [] rankings = new String[13];
+		 int[] highs=current.getHighs();
+		 int[] lows=current.getLows();
+		 System.out.println("This is user pref:"+pref);
 		 for(int i=1;i<13;i++)
 		 {
-			 
-			 differences[i]=visitors[i]-pref;
-			 differences[i]=Math.abs(differences[i]);
+			 System.out.println("Average:"+average[i]);
+			 differences[i]=average[i]-pref;
+			// differences[i]=Math.abs(differences[i]);
+			 System.out.println("Difference: "+differences[i]);
+			 System.out.println("High Temp: "+highs[i-1]);
+			 System.out.println("Lows Temp: "+lows[i-1]);
 		 }
 		 
-		int[] cDifferences=differences.clone();
+		float[] cDifferences=differences.clone();
 		Arrays.sort(cDifferences);
 		for(int i=1;i<13;i++)
 		{
@@ -58,19 +89,30 @@ public class DensityAlg {
 					switch (x)
 					{
 					case 1: rankings[i]="Janurary";
-							break;
-					
+					break;
 					case 2: rankings[i]="Feburary";
-							break;
-					
+					break;		
 					case 3: rankings[i]="March";
-							break;
+					break;
 					case 4:rankings[i]="April";
-							break;
+					break;
 					case 5:rankings[i]="May";
-							break;
+					break;
 					case 6: rankings [i]="June";
-							break;
+					break;
+					case 7: rankings [i]="July";
+					break;
+					case 8: rankings [i]="August";
+					break;
+					case 9: rankings [i]="September";
+					break;
+					case 10: rankings [i]="October";
+					break;
+					case 11: rankings [i]="November";
+					break;
+					case 12: rankings [i]="December";
+					break;
+							
 					default: rankings [i]="TESTING";
 					break;
 					}
