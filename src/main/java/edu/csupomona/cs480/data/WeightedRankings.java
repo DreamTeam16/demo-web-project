@@ -10,6 +10,8 @@ public class WeightedRankings {
 	int prefWeight;
 	ParkData park;
 	public String month;
+	int tempWeight;
+	int crowdsWeight;
 	
 	
 	public WeightedRankings(ParkData park, int prefCrowds, int prefTemp, int prefWeight)
@@ -21,7 +23,7 @@ public class WeightedRankings {
 		this.prefWeight=prefWeight;	
 	}
 	
-	public void getTempWeight()
+	public void getWeight()
 	{
 		//slider all the way temp
 		if (prefWeight == 1){
@@ -57,9 +59,10 @@ public class WeightedRankings {
 		DensityAlg den= new DensityAlg(park, prefCrowds);
 		TempAlg temp=new TempAlg(park,prefTemp);
 		int[] rank=new int[12];
+		getWeight();
 		if(prefCrowds>80)
 		{
-			//code for weights to change in favor of weather as crowds do not matter as much
+			crowdsWeight=0;
 		}
 		String[] density=den.getDensityRankings();
 		String[] tRank=temp.Rankings();
