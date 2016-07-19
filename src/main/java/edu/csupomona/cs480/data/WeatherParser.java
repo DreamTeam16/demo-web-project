@@ -9,22 +9,199 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class WeatherParser {
+	 
+	public static void main(String[] args) {
+		String bigbend = BigBendWeather();
+		System.out.println(bigbend);
+		String arches = ArchesWeather();
+		System.out.println(arches);
+		String jt = JSTreeWeatherParser();
+		System.out.println(jt);
+		String yose = yosemiteWeatherParser();
+		System.out.println(yose);
+	}
 	
-	public int[] highs;
-	public int[] lows;
-//	public static void main(String[] args) {
-//		JSTreeWeatherParser();
-//		yosemiteWeatherParser();
-//	}
+	//Acadia,badlands, biscayne, black canyon, bryce canyon, canyonlands,  weather not available on usclimatedata site
 	
-	//Parse Joshua Tree Weather highs/lows
-	public String JSTreeWeatherParser() {
-		int[] highs = new int[12];
-		int[] lows = new int[12];
+	public static String CapitolReefWeather() {
+		String[] highs = new String[12];
+		String[] lows = new String[12];
 
 		String temp = "";
 		String lowtemps = "";
+ 
+		
+		Document doc;
+		try {
+			doc = Jsoup.connect("http://www.usclimatedata.com/climate/capitol-reef-natl-park/utah/united-states/usut0036").get();
+			Elements highTemperatures = doc.select("td.align_right.temperature_red");
+			Elements lowTemperatures = doc.select("td.align_right.temperature_blue");
+			
+			int i = 0;
+			 for (Element hightemp : highTemperatures) {
+				 highs[i] = hightemp.text();
+	         	i++;
+	         	if (i == 12) {
+	         		break;
+	         	}
+			 }
+			 
+			 i = 0;
+			 for (Element coldtemp : lowTemperatures) {
+				lows[i] = coldtemp.text();
+	         	i++;
+	         	if (i == 12) {
+	         		break;
+	         	}
+			 } 
+			 i = 0;
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+		 
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Capitol Reef National Park.csv";
+		try {
+			FileWriter fw = new FileWriter(fileName);
+			fw.write("Average Monthly Weather\n");
+			fw.write("null\n");
+			for (int i = 0; i < highs.length; i++) {
+				temp += highs[i]; 
+				lowtemps += lows[i];
+				fw.write(highs[i] + ", " + lows[i] + "\n");
+				if (i != highs.length-1) {
+					temp += ", ";
+					lowtemps += ", ";
+				}  
+			}
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Capitol Reef National Park Weather for Each Month \nHighs: " + temp + "\n" + "Lows: " + lowtemps;
+	}
+	
+	public static String BigBendWeather() {
+		String[] highs = new String[12];
+		String[] lows = new String[12];
 
+		String temp = "";
+		String lowtemps = "";
+ 
+		
+		Document doc;
+		try {
+			doc = Jsoup.connect("http://www.usclimatedata.com/climate/big-bend-national-park/texas/united-states/ustx2354").get();
+			Elements highTemperatures = doc.select("td.align_right.temperature_red");
+			Elements lowTemperatures = doc.select("td.align_right.temperature_blue");
+			
+			int i = 0;
+			 for (Element hightemp : highTemperatures) {
+				 highs[i] = hightemp.text();
+	         	i++;
+	         	if (i == 12) {
+	         		break;
+	         	}
+			 }
+			 
+			 i = 0;
+			 for (Element coldtemp : lowTemperatures) {
+				lows[i] = coldtemp.text();
+	         	i++;
+	         	if (i == 12) {
+	         		break;
+	         	}
+			 } 
+			 i = 0;
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+		 
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Big Bend.csv";
+		try {
+			FileWriter fw = new FileWriter(fileName);
+			fw.write("Average Monthly Weather\n");
+			fw.write("null\n");
+			for (int i = 0; i < highs.length; i++) {
+				temp += highs[i]; 
+				lowtemps += lows[i];
+				fw.write(highs[i] + ", " + lows[i] + "\n");
+				if (i != highs.length-1) {
+					temp += ", ";
+					lowtemps += ", ";
+				}
+			}
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Big Bend National Park Weather for Each Month \nHighs: " + temp + "\n" + "Lows: " + lowtemps;
+	}
+	
+	public static String ArchesWeather() {
+		String[] highs = new String[12];
+		String[] lows = new String[12];
+
+		String temp = "";
+		String lowtemps = "";
+ 
+		
+		Document doc;
+		try {
+			doc = Jsoup.connect("http://www.usclimatedata.com/climate/arches-natl-park/utah/united-states/usut0010").get();
+			Elements highTemperatures = doc.select("td.align_right.temperature_red");
+			Elements lowTemperatures = doc.select("td.align_right.temperature_blue");
+			
+			int i = 0;
+			 for (Element hightemp : highTemperatures) {
+				 highs[i] = hightemp.text();
+	         	i++;
+	         	if (i == 12) {
+	         		break;
+	         	}
+			 }
+			 
+			 i = 0;
+			 for (Element coldtemp : lowTemperatures) {
+				lows[i] = coldtemp.text();
+	         	i++;
+	         	if (i == 12) {
+	         		break;
+	         	}
+			 } 
+			 i = 0;
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+		 
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Arches.csv";
+		try {
+			FileWriter fw = new FileWriter(fileName);
+			fw.write("Average Monthly Weather\n");
+			fw.write("null\n");
+			for (int i = 0; i < highs.length; i++) {
+				temp += highs[i]; 
+				lowtemps += lows[i];
+				fw.write(highs[i] + ", " + lows[i] + "\n");
+				if (i != highs.length-1) {
+					temp += ", ";
+					lowtemps += ", ";
+				}
+			}
+			fw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return "Arches National Park Weather for Each Month \nHighs: " + temp + "\n" + "Lows: " + lowtemps;
+	}
+	
+	//Parse Joshua Tree Weather highs/lows
+	public static String JSTreeWeatherParser() {
+		String[] highs = new String[12];
+		String[] lows = new String[12];
+
+		String temp = "";
+		String lowtemps = "";
+ 
 		
 		Document doc;
 		try {
@@ -34,9 +211,7 @@ public class WeatherParser {
 			
 			int i = 0;
 			 for (Element hightemp : highTemperatures) {
-				 highs[i] = Integer.parseInt(hightemp.text());
-				 System.out.println(highs[i]);
-//	         	System.out.println("#" + i + ": " + hightemp.text());
+				 highs[i] = hightemp.text();
 	         	i++;
 	         	if (i == 12) {
 	         		break;
@@ -45,48 +220,42 @@ public class WeatherParser {
 			 
 			 i = 0;
 			 for (Element coldtemp : lowTemperatures) {
-				lows[i] = Integer.parseInt(coldtemp.text());
-//	         	System.out.println("#" + i + ": " + coldtemp.text());
+				lows[i] = coldtemp.text();
 	         	i++;
 	         	if (i == 12) {
 	         		break;
 	         	}
-			 }
+			 } 
 			 i = 0;
-		} catch (IOException e) {
+		} catch (IOException e) { 
 			e.printStackTrace();
 		}
 		 
 		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Joshua Tree.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
-			fw.write("January, February, March, April, May, June, July, August, September, October, November, December\n");
+			fw.write("Average Monthly Weather\n");
+			fw.write("null\n");
 			for (int i = 0; i < highs.length; i++) {
-				temp += highs[i];
+				temp += highs[i]; 
+				lowtemps += lows[i];
+				fw.write(highs[i] + ", " + lows[i] + "\n");
 				if (i != highs.length-1) {
 					temp += ", ";
-				}
-			}
-//			System.out.println(temp);
-			fw.write(temp + "\n");
-			for (int i = 0; i < lows.length; i++) {
-				lowtemps += lows[i];
-				if (i != highs.length-1) {
 					lowtemps += ", ";
 				}
 			}
-			fw.write(lowtemps);
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "Highs: " + temp + "\n" + "Lows: " + lowtemps;
+		return "Joshua Tree Weather for Each Month \nHighs: " + temp + "\n" + "Lows: " + lowtemps;
 	}
 	
 	 
-	public String yosemiteWeatherParser() {
-		int[] highs = new int[12];
-		int[] lows = new int[12];
+	public static String yosemiteWeatherParser() {
+		String[] highs = new String[12];
+		String[] lows = new String[12];
 		
 		String temp = "";
 		String lowtemps = "";
@@ -99,8 +268,7 @@ public class WeatherParser {
 			
 			int i = 0;
 			 for (Element hightemp : highTemperatures) {
-				highs[i] = Integer.parseInt(hightemp.text());
-//	         	System.out.println("#" + i + ": " + hightemp.text());
+				 highs[i] = hightemp.text();
 	         	i++;
 	         	if (i == 12) {
 	         		break;
@@ -109,43 +277,36 @@ public class WeatherParser {
 			 
 			 i = 0;
 			 for (Element coldtemp : lowTemperatures) {
-				lows[i] = Integer.parseInt(coldtemp.text());
-//	         	System.out.println("#" + i + ": " + coldtemp.text());
+				lows[i] = coldtemp.text();
 	         	i++;
 	         	if (i == 12) {
 	         		break;
 	         	}
-			 }
-			 this.highs=highs;
-			 this.lows=lows;
-		} catch (IOException e) {
+			 } 
+			 i = 0;
+		} catch (IOException e) { 
 			e.printStackTrace();
 		}
 		
-		/*String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Yosemite.csv";
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Yosemite.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
-			fw.write("January, February, March, April, May, June, July, August, September, October, November, December\n");
+			fw.write("Average Monthly Weather\n");
+			fw.write("null\n");
 			for (int i = 0; i < highs.length; i++) {
-				temp += highs[i];
+				temp += highs[i]; 
+				lowtemps += lows[i];
+				fw.write(highs[i] + ", " + lows[i] + "\n");
 				if (i != highs.length-1) {
 					temp += ", ";
-				}
-			}
-			fw.write(temp + "\n");
-			for (int i = 0; i < lows.length; i++) {
-				lowtemps += lows[i];
-				if (i != lows.length-1) {
 					lowtemps += ", ";
 				}
 			}
-			fw.write(lowtemps);
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		*/
-		return "Highs: " + temp + "\n" + "Lows: " + lowtemps;
+		return "Yosemite Weather for Each Month \nHighs: " + temp + "\n" + "Lows: " + lowtemps;
 	}
 
 }
