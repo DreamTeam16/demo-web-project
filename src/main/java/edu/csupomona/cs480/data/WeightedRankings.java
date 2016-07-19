@@ -21,6 +21,37 @@ public class WeightedRankings {
 		this.prefWeight=prefWeight;	
 	}
 	
+	public void getTempWeight()
+	{
+		//slider all the way temp
+		if (prefWeight == 1){
+			tempWeight = 12;
+			crowdsWeight = 1;
+		}
+		//slider closer to temp side
+	else if (prefWeight < 6)
+		{
+			tempWeight = 12 - prefWeight;
+			crowdsWeight = 12 - tempWeight;
+		}
+		//slider in middle
+		else if (prefWeight == 6) {
+			tempWeight = 6;
+			crowdsWeight = 6;
+		}
+		//slider closer to crowd side
+		else if (prefWeight <12){
+			crowdsWeight = prefWeight;
+			tempWeight = 13 - crowdsWeight;
+	}
+	//slider all the way to crowds
+		else{
+			crowdsWeight = 12;
+			tempWeight = 1;
+		}
+		
+	}
+	
 	public void getRankings()
 	{
 		DensityAlg den= new DensityAlg(park, prefCrowds);
@@ -41,29 +72,29 @@ public class WeightedRankings {
 				{
 					switch (density[x])
 					{
-					case "Janurary":rank[0]=x+i;
+					case "Janurary":rank[0]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "Feburary":rank[1]=x+i;
+					case "Feburary":rank[1]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "March":rank[2]=x+i;
+					case "March":rank[2]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "April":rank[3]=x+i;
+					case "April":rank[3]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "May":rank[4]=x+i;
+					case "May":rank[4]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "June":rank[5]=x+i;
+					case "June":rank[5]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "July":rank[6]=x+i;
+					case "July":rank[6]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "August":rank[7]=x+i;
+					case "August":rank[7]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "September":rank[8]=x+i;
+					case "September":rank[8]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "October":rank[9]=x+i;
+					case "October":rank[9]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "November":rank[10]=x+i;
+					case "November":rank[10]=(x*crowdsWeight)+(i*tempWeight);
 					break;
-					case "December":rank[11]=x+i;
+					case "December":rank[11]=(x*crowdsWeight)+(i*tempWeight);
 					break;
 					
 					}
