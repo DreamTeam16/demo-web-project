@@ -1,4 +1,4 @@
-
+package edu.csupomona.cs480.data;
 public class TempAlg {
 	
 	int temps[] = { 60, 64, 70, 77, 86, 95, 100, 99, 93, 82, 69, 60 };
@@ -38,6 +38,25 @@ public class TempAlg {
 		this.target = target;		
 	}
 	
+	public TempAlg() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public TempAlg(ParkData park,int userPref) {
+		int [] highs=park.getHighs();
+		int [] lows=park.getLows();
+		target=userPref;
+		
+		for (int i = 0; i<12; i++) {
+			if (5 < i && i < 11) // summer
+			{
+				temps[i] = highs[i];// should be highs
+			} else // winter
+				temps[i] = lows[i];// should be lows
+		}
+		
+	}
+
 	//calculates the difference from target
 	// highs? lows?
 	void calcDiff() {
