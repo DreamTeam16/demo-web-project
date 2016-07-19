@@ -25,12 +25,12 @@ public class WeightedRankings {
 	
 	public void getWeight()
 	{
-		//slider all the way temp
+		//slider all the way to crowds
 		if (prefWeight == 1){
-			tempWeight = 12;
-			crowdsWeight = 1;
+			crowdsWeight = 12;
+			tempWeight = 1;
 		}
-		//slider closer to temp side
+		//slider closer to crowds side
 	else if (prefWeight < 6)
 		{
 			tempWeight = 12 - prefWeight;
@@ -38,18 +38,18 @@ public class WeightedRankings {
 		}
 		//slider in middle
 		else if (prefWeight == 6) {
-			tempWeight = 6;
 			crowdsWeight = 6;
+			tempWeight = 6;
 		}
-		//slider closer to crowd side
+		//slider closer to temp side
 		else if (prefWeight <12){
-			crowdsWeight = prefWeight;
-			tempWeight = 13 - crowdsWeight;
+			tempWeight = prefWeight;
+			crowdsWeight = 13 - crowdsWeight;
 	}
-	//slider all the way to crowds
+	//slider all the way to temp
 		else{
-			crowdsWeight = 12;
-			tempWeight = 1;
+			tempWeight = 12;
+			crowdsWeight = 1;
 		}
 		
 	}
