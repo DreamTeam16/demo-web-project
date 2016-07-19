@@ -26,8 +26,8 @@
 		$(function() {
 			$("#slider1").slider({
 				range: "min",
-				min: 0,
-				max: 12,
+				min: 1,
+				max: 13,
 				value: 6
 			});
 		});
@@ -48,7 +48,7 @@
 		$(function() {
 			$("#slider3").slider({
 				range: "min",
-				min: 0,
+				min: 1,
 				max: 12,
 				value: 6
 			});
@@ -62,7 +62,7 @@
 
 	cs480App.controller('recCtrl', function ($scope, $http) {
 		 				
-	$scope.getRec = function() {
+	$scope.getRec2 = function() {
 	
 		var myParams = { 
 			parkName: String($("#parkName").val()),
@@ -71,9 +71,9 @@
 			prefWeight: $("#slider3").slider("value")
 		}
 		
-		$http.get("getRec", { params: myParams } )
+		$http.get("getRec2", { params: myParams } )
 			.success(function(data){
-				$scope.rec = data;
+				$scope.rec2 = data;
 		});
 	}
 
@@ -155,10 +155,10 @@
 
 <h2>[TRAVEL]<H2>
 <h1>Just Right</h1>
-<h2>You know where. We tell you when.</h2>
+<h2><span>You know where. </span><span>We tell you when.</span></h2>
 
 <div id="search-field" class="ui-widget">		
-	<form ng-submit="getRec()">
+	<form ng-submit="getRec2()">
 	    <input type="text" placeholder="Enter national park*" id="parkName" class="input-field"> 
 	    <input type="submit" value="Submit" onclick="updateCharts()" class="button">
 	</form>
@@ -172,7 +172,7 @@
 		<div class="slider">
 			<div id="slider1"></div>
 		</div>
-		<p class="slider-text">Dislike them<p/>
+		<p class="slider-text">Dislike <span class="m-hide">them</span><p/>
 	</div>
 	
 	<div style="clear: both;"></div>
@@ -190,11 +190,11 @@
 	
 	<div class="option">
 		<p>Which matters more to you?</p>
-		<p class="slider-text">Temperature</p>
+		<p class="slider-text">Temp<span class="m-hide">erature</span></p>
 		<div class="slider">
 			<div id="slider3"></div>
 		</div>
-		<p class="slider-text">Crowd level<p/>
+		<p class="slider-text">Crowd <span class="m-hide">level</span><p/>
 	</div>
 	
 	<div style="clear: both;"></div>	
@@ -205,7 +205,7 @@
 
 <div class="double-chart-container"> 
 
-	<p class="chart" id="rec-text">Go to {{rec.name}} in {{rec.month}}</p>
+	<p class="chart" id="rec-text">Go to {{rec2.name}} in {{rec2.month}}</p>
 	<p id="not-found-text">The destination you entered was not found. Please try again.</p>
 					 		
 	<div class="chart-container">
@@ -264,7 +264,7 @@
 		bindto: '#weather-chart',
 		
 	    data: {
-	        url: '/data/parks/chart-data/weather-data/Joshua Tree National Park.csv',
+	        url: '/data/parks/chart-data/weather-data/Joshua Tree.csv',
 	        type: 'bar'
 	    },
 	    
