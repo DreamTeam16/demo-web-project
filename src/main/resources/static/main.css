@@ -111,9 +111,15 @@ input[type=text] {
 		display: none;
 	}
 	
+	.slider {
+		float: right;
+		width: 40%;
+		margin-top: 2px;
+	}
+	
 	.slider-text { 
 		float: right;
-		width: 22%; 
+		width: 25%; 
 		margin: auto;
 		margin-right: 3px;
 		margin-left: 3px;
