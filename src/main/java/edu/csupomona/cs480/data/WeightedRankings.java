@@ -115,29 +115,29 @@ public class WeightedRankings {
 		
 		switch (highest)
 		{
-		case 1: month="Janurary";
+		case 0: month="Janurary";
 		break;
-		case 2: month="Feburary";
+		case 1: month="Feburary";
 		break;		
-		case 3: month="March";
+		case 2: month="March";
 		break;
-		case 4:month="April";
+		case 3:month="April";
 		break;
-		case 5:month="May";
+		case 4:month="May";
 		break;
-		case 6: month="June";
+		case 5: month="June";
 		break;
-		case 7: month="July";
+		case 6: month="July";
 		break;
-		case 8: month="August";
+		case 7: month="August";
 		break;
-		case 9: month="September";
+		case 8: month="September";
 		break;
-		case 10: month="October";
+		case 9: month="October";
 		break;
-		case 11: month="November";
+		case 10: month="November";
 		break;
-		case 12: month="December";
+		case 11: month="December";
 		break;
 				
 		default: month="TESTING";
