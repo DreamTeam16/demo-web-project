@@ -12,6 +12,7 @@ public class WeatherParser {
 	 
 	public static void main(String[] args) {
 		String bigbend = BigBendWeather();
+		CapitolReefWeather();
 		System.out.println(bigbend);
 		String arches = ArchesWeather();
 		System.out.println(arches);
@@ -23,12 +24,9 @@ public class WeatherParser {
 	
 	//Acadia,badlands, biscayne, black canyon, bryce canyon, canyonlands,  weather not available on usclimatedata site
 	
-	public static String CapitolReefWeather() {
+	public static void CapitolReefWeather() {
 		String[] highs = new String[12];
 		String[] lows = new String[12];
-
-		String temp = "";
-		String lowtemps = "";
  
 		
 		Document doc;
@@ -65,19 +63,12 @@ public class WeatherParser {
 			fw.write("Average Monthly Weather\n");
 			fw.write("null\n");
 			for (int i = 0; i < highs.length; i++) {
-				temp += highs[i]; 
-				lowtemps += lows[i];
-				fw.write(highs[i] + ", " + lows[i] + "\n");
-				if (i != highs.length-1) {
-					temp += ", ";
-					lowtemps += ", ";
-				}  
+				fw.write(highs[i] + ", " + lows[i] + "\n");  
 			}
 			fw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return "Capitol Reef National Park Weather for Each Month \nHighs: " + temp + "\n" + "Lows: " + lowtemps;
 	}
 	
 	public static String BigBendWeather() {
@@ -116,7 +107,7 @@ public class WeatherParser {
 			e.printStackTrace();
 		}
 		 
-		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Big Bend.csv";
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Big Bend National Park.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			fw.write("Average Monthly Weather\n");
@@ -173,7 +164,7 @@ public class WeatherParser {
 			e.printStackTrace();
 		}
 		 
-		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Arches.csv";
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Arches National Park.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			fw.write("Average Monthly Weather\n");
@@ -231,7 +222,7 @@ public class WeatherParser {
 			e.printStackTrace();
 		}
 		 
-		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Joshua Tree.csv";
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Joshua Tree National Park.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			fw.write("Average Monthly Weather\n");
@@ -288,7 +279,7 @@ public class WeatherParser {
 			e.printStackTrace();
 		}
 		
-		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Yosemite.csv";
+		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Yosemite National Park.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			fw.write("Average Monthly Weather\n");
