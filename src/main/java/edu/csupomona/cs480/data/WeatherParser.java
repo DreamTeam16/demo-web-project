@@ -10,6 +10,8 @@ import org.jsoup.select.Elements;
 
 public class WeatherParser {
 	
+	public int[] highs;
+	public int[] lows;
 //	public static void main(String[] args) {
 //		JSTreeWeatherParser();
 //		yosemiteWeatherParser();
@@ -114,11 +116,13 @@ public class WeatherParser {
 	         		break;
 	         	}
 			 }
+			 this.highs=highs;
+			 this.lows=lows;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
-		String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Yosemite.csv";
+		/*String fileName = "src/main/resources/static/data/parks/chart-data/weather-data/Yosemite.csv";
 		try {
 			FileWriter fw = new FileWriter(fileName);
 			fw.write("January, February, March, April, May, June, July, August, September, October, November, December\n");
@@ -140,6 +144,7 @@ public class WeatherParser {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		*/
 		return "Highs: " + temp + "\n" + "Lows: " + lowtemps;
 	}
 

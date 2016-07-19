@@ -60,22 +60,19 @@ public class DensityAlg {
 	 }
 	 */
 	 
-	 public void getDensityRankings() // Suppose to be string array testing right now.
+	 public String[] getDensityRankings() // Suppose to be string array testing right now.
 	 {
 		 float pref=getPref();
 		 float[] differences= new float[13];
-		 String [] rankings = new String[13];
-		 int[] highs=current.getHighs();
-		 int[] lows=current.getLows();
-		 System.out.println("This is user pref:"+pref);
+		 String [] rankings = new String[13]
+		 //System.out.println("This is user pref:"+pref);
 		 for(int i=1;i<13;i++)
 		 {
-			 System.out.println("Average:"+average[i]);
+			 //System.out.println("Average:"+average[i]);
 			 differences[i]=average[i]-pref;
-			// differences[i]=Math.abs(differences[i]);
-			 System.out.println("Difference: "+differences[i]);
-			 System.out.println("High Temp: "+highs[i-1]);
-			 System.out.println("Lows Temp: "+lows[i-1]);
+			 differences[i]=Math.abs(differences[i]);
+			 //System.out.println("Difference: "+differences[i]);
+
 		 }
 		 
 		float[] cDifferences=differences.clone();
@@ -121,8 +118,10 @@ public class DensityAlg {
 			}
 		}
 		 month=rankings[1];
-		 System.out.println(month);
-		 //return rankings;
+		 Collections.reverse(Arrays.asList(rankings));
+		 for(int x=0;x<12;x++)
+		 System.out.println(rankings[x]);
+		 return rankings;
 	 }
 
 

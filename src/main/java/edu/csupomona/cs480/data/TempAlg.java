@@ -1,4 +1,8 @@
 package edu.csupomona.cs480.data;
+
+import java.util.Arrays;
+import java.util.Collections;
+
 public class TempAlg {
 	
 	int temps[] = { 60, 64, 70, 77, 86, 95, 100, 99, 93, 82, 69, 60 };
@@ -6,6 +10,7 @@ public class TempAlg {
 	int tempsDiff[] = new int[12]; // seasonal
 	double tempsScore[] = new double[12];
 	double sDev;
+	public String month;
 	
 	public void algDriver(){
 		calcDiff();
@@ -96,6 +101,71 @@ public class TempAlg {
 			mean += i;
 		}
 		return (mean / 12);
+	}
+	
+	public String[] Rankings()
+	{
+		 String [] rankings = new String[12];
+		 algDriver();
+		 
+		for (int i=0;i<12;i++)
+		{
+			for(int x=i+1;x<12;x++)
+			{
+				if(tempsScore[x]==tempsScore[i])
+				{
+					tempsScore[x]=tempsScore[x]+.00000000000001;
+				}	
+			}
+		}
+		double[] cDifferences=tempsScore.clone();
+		Arrays.sort(cDifferences);
+		for(int i=0;i<12;i++)
+		{
+			for(int x=0;x<12;x++)
+			{
+				if(cDifferences[i]==tempsScore[x])
+				{
+					switch (x)
+					{
+					case 0: rankings[i]="Janurary";
+					break;
+					case 1: rankings[i]="Feburary";
+					break;		
+					case 2: rankings[i]="March";
+					break;
+					case 3:rankings[i]="April";
+					break;
+					case 4:rankings[i]="May";
+					break;
+					case 5: rankings [i]="June";
+					break;
+					case 6: rankings [i]="July";
+					break;
+					case 7: rankings [i]="August";
+					break;
+					case 8: rankings [i]="September";
+					break;
+					case 9: rankings [i]="October";
+					break;
+					case 10: rankings [i]="November";
+					break;
+					case 11: rankings [i]="December";
+					break;
+							
+					default: rankings [i]="TESTING";
+					break;
+					}
+					break;
+				}
+			}
+		}
+		
+		 Collections.reverse(Arrays.asList(rankings));
+		 month=rankings[11];
+		 for(int x=0;x<12;x++)
+		 System.out.println(rankings[x]);
+		 return rankings;
 	}
 
 }

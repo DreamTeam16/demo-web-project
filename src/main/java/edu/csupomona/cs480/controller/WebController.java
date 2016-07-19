@@ -76,21 +76,18 @@ public class WebController {
 		System.out.println("getRec called. parkname: " + parkName + ". crowds pref: " + prefCrowds + ". temp pref: " + prefTemp + ". prefweight: " + prefWeight);
 		ParkData park = CsvParser.parsePark(parkName);
 		int test[]=park.getRecVisitors();
-		System.out.println(test[0]);
-		System.out.println(test[1]);
-		System.out.println(test[2]);
-		System.out.println(test[12]);
 		FakeAlgo rec = new FakeAlgo();
 		rec.generateRankings(park, prefCrowds, prefTemp);
 		return rec;
 	}
 	
 	@RequestMapping(value = "/getRec2", method = RequestMethod.GET)
-	public DensityAlg getRec2(String parkName, int prefCrowds, int prefTemp) {
-		System.out.println("getRec2 called. parkname: " + parkName + ". crowds pref: " + prefCrowds + ". temp pref: " + prefTemp);
+	public TempAlg getRec2(String parkName, int prefCrowds, int prefTemp, int prefWeight) {
+		System.out.println("getRec2 called. parkname: " + parkName + ". crowds pref: " + prefCrowds + ". temp pref: " + prefTemp+ ". prefweight: " + prefWeight);
 		ParkData park = CsvParser.parsePark(parkName);
-		DensityAlg rec=new DensityAlg(park,prefCrowds);
-		rec.getDensityRankings();
+		//DensityAlg rec=new DensityAlg(park,prefCrowds);
+		TempAlg rec= new TempAlg(park,prefTemp);
+		String[] test=rec.Rankings();
 		return rec;
 	}
 	@RequestMapping(value = "/parkPage", method = RequestMethod.GET)

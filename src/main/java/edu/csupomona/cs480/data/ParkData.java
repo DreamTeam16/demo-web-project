@@ -36,6 +36,6 @@ public class ParkData {
 	}
 	
 	public int[] getLows() {
-		return highs;
+		return lows;
 	}
 }
