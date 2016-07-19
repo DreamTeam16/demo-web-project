@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class WeightedRankings {
-	String name;
+	public String name;
 	int prefCrowds;
 	int prefTemp;
 	int prefWeight;
