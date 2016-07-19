@@ -103,8 +103,20 @@ input[type=text] {
 	
 @media only screen and (max-width: 980px) {
 
-	p {
-		font-size: 12px;
+	span {
+		display: block;
+	}
+	
+	.m-hide {
+		display: none;
+	}
+	
+	.slider-text { 
+		float: right;
+		width: 22%; 
+		margin: auto;
+		margin-right: 3px;
+		margin-left: 3px;
 	}
 	
 	.option {
