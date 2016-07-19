@@ -82,12 +82,12 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/getRec2", method = RequestMethod.GET)
-	public TempAlg getRec2(String parkName, int prefCrowds, int prefTemp, int prefWeight) {
+	public WeightedRankings getRec2(String parkName, int prefCrowds, int prefTemp, int prefWeight) {
 		System.out.println("getRec2 called. parkname: " + parkName + ". crowds pref: " + prefCrowds + ". temp pref: " + prefTemp+ ". prefweight: " + prefWeight);
 		ParkData park = CsvParser.parsePark(parkName);
 		//DensityAlg rec=new DensityAlg(park,prefCrowds);
-		TempAlg rec= new TempAlg(park,prefTemp);
-		String[] test=rec.Rankings();
+		WeightedRankings rec= new WeightedRankings(park,prefCrowds,prefTemp,prefWeight);
+		rec.getRankings();
 		return rec;
 	}
 	@RequestMapping(value = "/parkPage", method = RequestMethod.GET)

@@ -64,7 +64,7 @@ public class DensityAlg {
 	 {
 		 float pref=getPref();
 		 float[] differences= new float[13];
-		 String [] rankings = new String[13]
+		 String [] rankings = new String[13];
 		 //System.out.println("This is user pref:"+pref);
 		 for(int i=1;i<13;i++)
 		 {
