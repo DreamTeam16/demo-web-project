@@ -20,6 +20,7 @@ public class WeatherParser {
 		System.out.println(jt);
 		String yose = yosemiteWeatherParser();
 		System.out.println(yose);
+		System.out.println("test github");
 	}
 	
 	//Acadia,badlands, biscayne, black canyon, bryce canyon, canyonlands,  weather not available on usclimatedata site
