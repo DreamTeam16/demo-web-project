@@ -10,7 +10,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
 	<!-- site-wide custom css -->
-	<link href="main.css" rel="stylesheet" type="text/css">
+	<link href="main2.css" rel="stylesheet" type="text/css">
 	
 	<!-- for charts -->
 	<link href="/js/c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
@@ -31,7 +31,6 @@
 				value: 6
 			});
 		});
-
 		$(function() {
 			$("#slider2").slider({
 				range: "min",
@@ -53,13 +52,11 @@
 				value: 6
 			});
 		});
-
 	</script>
 	
 	<!-- for angular JS to get recommendation -->
 	<script>
 	var cs480App = angular.module('cs480App', []);
-
 	cs480App.controller('recCtrl', function ($scope, $http) {
 		 				
 	$scope.getRec2 = function() {
@@ -76,78 +73,8 @@
 				$scope.rec2 = data;
 		});
 	}
-
 	});
 	</script>
-	
-	<script>
-	  $( function() {
-	    var availableTags = [
-		    "Acadia National Park",
-			"Arches National Park",
-			"Badlands National Park",
-			"Big Bend National Park",
-			"Biscayne National Park",
-			"Black Canyon of the Gunnison National Park",
-			"Bryce Canyon National Park",
-			"Canyonlands National Park",
-			"Capitol Reef National Park",
-			"Carlsbad Caverns National Park",
-			"Channel Islands National Park",
-			"Congaree National Park",
-			"Crater Lake National Park",
-			"Cuyahoga Valley National Park",
-			"Death Valley National Park",
-			"Denali National Park & Preserve",
-			"Dry Tortugas National Park",
-			"Everglades National Park",
-			"Gates of the Arctic National Park",
-			"Glacier Bay National Park",
-			"Glacier National Park",
-			"Grand Canyon National Park",
-			"Grand Teton National Park",
-			"Great Basin National Park",
-			"Great Sand Dunes National Park and Preserve",
-			"Great Smoky Mountains National Park",
-			"Guadalupe Mountains National Park",
-			"Haleakala National Park",
-			"Hawaii Volcanoes National Park",
-			"Hot Springs National Park",
-			"Isle Royale National Park",
-			"Joshua Tree National Park",
-			"Katmai National Park and Preserve",
-			"Kenai Fjords National Park",
-			"Kings Canyon National Park",
-			"Kobuk Valley National Park",
-			"Lake Clark National Park",
-			"Lassen Volcanic National Park",
-			"Mammoth Cave National Park",
-			"Mesa Verde National Park",
-			"Mount Rainier National Park",
-			"National Park of American Samoa",
-			"North Cascades National Park",
-			"Olympic National Park",
-			"Petrified Forest National Park",
-			"Pinnacles National Park",
-			"Redwood National Park",
-			"Rocky Mountain National Park",
-			"Saguaro National Park",
-			"Sequoia National Park",
-			"Shenandoah National Park",
-			"Theodore Roosevelt National Park",
-			"Virgin Islands National Park",
-			"Voyageurs National Park",
-			"Wind Cave National Park",
-			"Wrangell St. Elias National Park and Preserve",
-			"Yellowstone National Park",
-			"Yosemite National Park",
-			"Zion National Park"
-	    ];
-	    $( "#parkName" ).autocomplete({
-	      source: availableTags
-	    });
-	  } );
-  </script>
 
 </head>
 
@@ -159,7 +86,68 @@
 
 <div id="search-field" class="ui-widget">		
 	<form ng-submit="getRec2()">
-	    <input type="text" placeholder="Enter national park*" id="parkName" class="input-field"> 
+		<select id="parkName" class="dp-menu">
+			<option disabled selected>Select national park*</option>
+			<option>Acadia National Park</option>
+			<option>Arches National Park</option>
+			<option>Badlands National Park</option>
+			<option>Big Bend National Park</option>
+			<option>Biscayne National Park</option>
+			<option>Black Canyon of the Gunnison National Park</option>
+			<option>Bryce Canyon National Park</option>
+			<option>Canyonlands National Park</option>
+			<option>Capitol Reef National Park</option>
+			<option>Carlsbad Caverns National Park</option>
+			<option>Channel Islands National Park</option>
+			<option>Congaree National Park</option>
+			<option>Crater Lake National Park</option>
+			<option>Cuyahoga Valley National Park</option>
+			<option>Death Valley National Park</option>
+			<option>Denali National Park & Preserve</option>
+			<option>Dry Tortugas National Park</option>
+			<option>Everglades National Park</option>
+			<option>Gates of the Arctic National Park</option>
+			<option>Glacier Bay National Park</option>
+			<option>Glacier National Park</option>
+			<option>Grand Canyon National Park</option>
+			<option>Grand Teton National Park</option>
+			<option>Great Basin National Park</option>
+			<option>Great Sand Dunes National Park and Preserve</option>
+			<option>Great Smoky Mountains National Park</option>
+			<option>Guadalupe Mountains National Park</option>
+			<option>Haleakala National Park</option>
+			<option>Hawaii Volcanoes National Park</option>
+			<option>Hot Springs National Park</option>
+			<option>Isle Royale National Park</option>
+			<option>Joshua Tree National Park</option>
+			<option>Katmai National Park and Preserve</option>
+			<option>Kenai Fjords National Park</option>
+			<option>Kings Canyon National Park</option>
+			<option>Kobuk Valley National Park</option>
+			<option>Lake Clark National Park</option>
+			<option>Lassen Volcanic National Park</option>
+			<option>Mammoth Cave National Park</option>
+			<option>Mesa Verde National Park</option>
+			<option>Mount Rainier National Park</option>
+			<option>National Park of American Samoa</option>
+			<option>North Cascades National Park</option>
+			<option>Olympic National Park</option>
+			<option>Petrified Forest National Park</option>
+			<option>Pinnacles National Park</option>
+			<option>Redwood National Park</option>
+			<option>Rocky Mountain National Park</option>
+			<option>Saguaro National Park</option>
+			<option>Sequoia National Park</option>
+			<option>Shenandoah National Park</option>
+			<option>Theodore Roosevelt National Park</option>
+			<option>Virgin Islands National Park</option>
+			<option>Voyageurs National Park</option>
+			<option>Wind Cave National Park</option>
+			<option>Wrangell St. Elias National Park and Preserve</option>
+			<option>Yellowstone National Park</option>
+			<option>Yosemite National Park</option>
+			<option>Zion National Park</option>
+	    </select>
 	    <input type="submit" value="Submit" onclick="updateCharts()" class="button">
 	</form>
 </div>
@@ -206,8 +194,16 @@
 <div class="double-chart-container"> 
 
 	<p class="chart" id="rec-text">Go to {{rec2.name}} in {{rec2.month}}</p>
-	<p id="not-found-text">The destination you entered was not found. Please try again.</p>
-					 		
+	
+	<!-- code for three suggestions instead of one
+	
+	<div class="chart">
+		<p id="rec-text">Best times to visit {{rec2.name}}:<br />
+		1. {{rec2.month1}} || 2. {{rec2.month2}} || 3. {{rec2.month3}}</p> 
+	</div>
+	
+	-->
+				 		
 	<div class="chart-container">
  		<div class="chart">
 			<p>[Crowds]</p>
@@ -256,15 +252,13 @@
 					}
 				}
 	    	}
-
 	});
-
 	
 	var chart2 = c3.generate({
 		bindto: '#weather-chart',
 		
 	    data: {
-	        url: '/data/parks/chart-data/weather-data/Joshua Tree.csv',
+	        url: '/data/parks/chart-data/weather-data/Joshua Tree National Park.csv',
 	        type: 'bar'
 	    },
 	    
@@ -278,7 +272,6 @@
 	
 		var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
 		var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
-
 	    chart.load({
 	        url: visitorData
 	    });
@@ -286,7 +279,6 @@
 	    chart2.load({
 	        url: weatherData
 	    });
-
 		$(".chart").show(); 
 									  
 	}

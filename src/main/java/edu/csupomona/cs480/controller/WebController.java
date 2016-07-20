@@ -91,9 +91,9 @@ public class WebController {
 		return rec;
 	}
 	@RequestMapping(value = "/parkPage", method = RequestMethod.GET)
-	public String parkPage() {
+	public String parkPage() { 
 		CsvParser.generateAllCSV(CsvParser.parseAll());
-		return "park-data.html";
+		return "park-data.html"; 
 	}
 	
 	//Jason Zhang's HTTP API
