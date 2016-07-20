@@ -9,7 +9,8 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 public class WeatherParser {
-	 
+	
+	/*
 	public static void main(String[] args) {
 		AcadiaWeather();
 		String arches = ArchesWeather();
@@ -130,7 +131,7 @@ public class WeatherParser {
 		
 		ZionWeather();
 
-	}
+	}*/
 
 	public static void OlympicWeather() {
 		String[] highs = new String[12];
