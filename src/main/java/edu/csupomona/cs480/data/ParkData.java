@@ -32,10 +32,14 @@ public class ParkData {
 	}
 	
 	public int[] getHighs() {
-		return highs;
+		int temps[] = { 60, 64, 70, 77, 86, 95, 100, 99, 93, 82, 69, 60 };
+		return temps;
+		//return highs;
 	}
 	
 	public int[] getLows() {
-		return lows;
+		int temps[] = { 40, 44, 50, 57, 66, 75, 80, 79, 73, 62, 49, 40 };
+		return temps;
+		//return lows;
 	}
 }
