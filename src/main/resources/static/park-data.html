@@ -79,48 +79,6 @@
 
 	});
 	</script>
-	
-	<script>
-	  $( function() {
-	    var data = {
-    "one potato": 1,
-        "two potato": 2,
-        "three potato": 3,
-        "four": 4,
-        "five potato": 5,
-        "six potato": 6,
-        "seven potato": 7,
-        "more": Number.POSITIVE_INFINITY
-}
-
-    function autocomplete($ctl, data, cb, freeInput) {
-        $ctl.autocomplete({
-            minLength: 1,
-            autoFocus: true,
-            messages: {
-                noResults: '',
-                results: function () {}
-            },
-            source: function (request, response) {
-                var result = $.grep(Object.keys(data), function (el) {
-                    return el.indexOf(request.term) === 0
-                });
-                response(result)
-            },
-            select: function (e, ui) {
-                console.log("ui.item", ui.item)
-                cb(e, ui)
-            },
-            change: function (e, ui) {
-                if (!(freeInput || ui.item)) e.target.value = "";
-            }
-        });
-    }
-
-autocomplete($('#potatos'), data, function () {});
-
-	  } );
-  </script>
 
 </head>
 
@@ -130,8 +88,73 @@ autocomplete($('#potatos'), data, function () {});
 <h1>Just Right</h1>
 <h2><span>You know where. </span><span>We tell you when.</span></h2>
 
-<label for="potatos">How many you got? </label><input name="potatos" id="potatos" type="text"></input>
-
+<div id="search-field" class="ui-widget">		
+	<form ng-submit="getRec2()">
+		<select id="parkName" style="width: 250px;">
+			<option>Acadia National Park</option>
+			<option>Arches National Park</option>
+			<option>Badlands National Park</option>
+			<option>Big Bend National Park</option>
+			<option>Biscayne National Park</option>
+			<option>Black Canyon of the Gunnison National Park</option>
+			<option>Bryce Canyon National Park</option>
+			<option>Canyonlands National Park</option>
+			<option>Capitol Reef National Park</option>
+			<option>Carlsbad Caverns National Park</option>
+			<option>Channel Islands National Park</option>
+			<option>Congaree National Park</option>
+			<option>Crater Lake National Park</option>
+			<option>Cuyahoga Valley National Park</option>
+			<option>Death Valley National Park</option>
+			<option>Denali National Park & Preserve</option>
+			<option>Dry Tortugas National Park</option>
+			<option>Everglades National Park</option>
+			<option>Gates of the Arctic National Park</option>
+			<option>Glacier Bay National Park</option>
+			<option>Glacier National Park</option>
+			<option>Grand Canyon National Park</option>
+			<option>Grand Teton National Park</option>
+			<option>Great Basin National Park</option>
+			<option>Great Sand Dunes National Park and Preserve</option>
+			<option>Great Smoky Mountains National Park</option>
+			<option>Guadalupe Mountains National Park</option>
+			<option>Haleakala National Park</option>
+			<option>Hawaii Volcanoes National Park</option>
+			<option>Hot Springs National Park</option>
+			<option>Isle Royale National Park</option>
+			<option>Joshua Tree National Park</option>
+			<option>Katmai National Park and Preserve</option>
+			<option>Kenai Fjords National Park</option>
+			<option>Kings Canyon National Park</option>
+			<option>Kobuk Valley National Park</option>
+			<option>Lake Clark National Park</option>
+			<option>Lassen Volcanic National Park</option>
+			<option>Mammoth Cave National Park</option>
+			<option>Mesa Verde National Park</option>
+			<option>Mount Rainier National Park</option>
+			<option>National Park of American Samoa</option>
+			<option>North Cascades National Park</option>
+			<option>Olympic National Park</option>
+			<option>Petrified Forest National Park</option>
+			<option>Pinnacles National Park</option>
+			<option>Redwood National Park</option>
+			<option>Rocky Mountain National Park</option>
+			<option>Saguaro National Park</option>
+			<option>Sequoia National Park</option>
+			<option>Shenandoah National Park</option>
+			<option>Theodore Roosevelt National Park</option>
+			<option>Virgin Islands National Park</option>
+			<option>Voyageurs National Park</option>
+			<option>Wind Cave National Park</option>
+			<option>Wrangell St. Elias National Park and Preserve</option>
+			<option>Yellowstone National Park</option>
+			<option>Yosemite National Park</option>
+			<option>Zion National Park</option>
+	    </select>
+	    <input type="submit" value="Submit" onclick="updateCharts()" class="button">
+	</form>
+</div>
+  
 <div class="sliders-container">
 
 	<div class="option">
@@ -232,7 +255,7 @@ autocomplete($('#potatos'), data, function () {});
 		bindto: '#weather-chart',
 		
 	    data: {
-	        url: '/data/parks/chart-data/weather-data/Joshua Tree.csv',
+	        url: '/data/parks/chart-data/weather-data/Joshua Tree National Park.csv',
 	        type: 'bar'
 	    },
 	    
