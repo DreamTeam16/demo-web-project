@@ -72,6 +72,12 @@ input[type=text] {
     border-radius: 4px;
 }
 
+#parkName {
+	width: 250px;
+	border-radius: 4px;
+	border-width: 1px;
+}
+
 #amount {
   width: 20%;	
 	height: 20px;
@@ -87,8 +93,8 @@ input[type=text] {
 
 
 #rec-text {
+	font-size: 18px;
 	margin-top: 80px;
-	font-size: 20px;
 }
 
 #not-found-text {
@@ -102,11 +108,15 @@ input[type=text] {
 
 	
 @media only screen and (max-width: 980px) {
-
-	span {
-		display: block;
+	
+	h1 {
+		font-size: 50px;
 	}
 	
+	h2 {
+		font-size: 20px;
+	}
+
 	.m-hide {
 		display: none;
 	}
