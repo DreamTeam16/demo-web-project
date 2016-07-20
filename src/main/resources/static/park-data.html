@@ -3,6 +3,8 @@
 <head>
     <title>[Travel] Just Right</title>
     
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <!-- miscellaneous js -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -24,9 +26,9 @@
 		$(function() {
 			$("#slider1").slider({
 				range: "min",
-				min: 0,
-				max: 100,
-				value: 50
+				min: 1,
+				max: 13,
+				value: 6
 			});
 		});
 
@@ -35,12 +37,21 @@
 				range: "min",
 				min: 0,
 				max: 100,
-				value: 70,
+				value: 68,
 				slide: function(event, ui) {
 					$("#amount").val(ui.value);
 				}
 			});
 			$("#amount").val( $("#slider2").slider("value"));
+		});
+		
+		$(function() {
+			$("#slider3").slider({
+				range: "min",
+				min: 1,
+				max: 12,
+				value: 6
+			});
 		});
 
 	</script>
@@ -51,17 +62,18 @@
 
 	cs480App.controller('recCtrl', function ($scope, $http) {
 		 				
-	$scope.getRec = function() {
+	$scope.getRec2 = function() {
 	
 		var myParams = { 
 			parkName: String($("#parkName").val()),
 			prefCrowds: $("#slider1").slider("value"),
-			prefTemp: $("#slider2").slider("value")
+			prefTemp: $("#slider2").slider("value"),
+			prefWeight: $("#slider3").slider("value")
 		}
 		
-		$http.get("getRec", { params: myParams } )
+		$http.get("getRec2", { params: myParams } )
 			.success(function(data){
-				$scope.rec = data;
+				$scope.rec2 = data;
 		});
 	}
 
@@ -70,70 +82,43 @@
 	
 	<script>
 	  $( function() {
-	    var availableTags = [
-		    "Acadia National Park",
-			"Arches National Park",
-			"Badlands National Park",
-			"Big Bend National Park",
-			"Biscayne National Park",
-			"Black Canyon of the Gunnison National Park",
-			"Bryce Canyon National Park",
-			"Canyonlands National Park",
-			"Capitol Reef National Park",
-			"Carlsbad Caverns National Park",
-			"Channel Islands National Park",
-			"Congaree National Park",
-			"Crater Lake National Park",
-			"Cuyahoga Valley National Park",
-			"Death Valley National Park",
-			"Denali National Park & Preserve",
-			"Dry Tortugas National Park",
-			"Everglades National Park",
-			"Gates of the Arctic National Park",
-			"Glacier Bay National Park",
-			"Glacier National Park",
-			"Grand Canyon National Park",
-			"Grand Teton National Park",
-			"Great Basin National Park",
-			"Great Sand Dunes National Park and Preserve",
-			"Great Smoky Mountains National Park",
-			"Guadalupe Mountains National Park",
-			"Haleakala National Park",
-			"Hawaii Volcanoes National Park",
-			"Hot Springs National Park",
-			"Isle Royale National Park",
-			"Joshua Tree National Park",
-			"Katmai National Park and Preserve",
-			"Kenai Fjords National Park",
-			"Kings Canyon National Park",
-			"Kobuk Valley National Park",
-			"Lake Clark National Park",
-			"Lassen Volcanic National Park",
-			"Mammoth Cave National Park",
-			"Mesa Verde National Park",
-			"Mount Rainier National Park",
-			"National Park of American Samoa",
-			"North Cascades National Park",
-			"Olympic National Park",
-			"Petrified Forest National Park",
-			"Pinnacles National Park",
-			"Redwood National Park",
-			"Rocky Mountain National Park",
-			"Saguaro National Park",
-			"Sequoia National Park",
-			"Shenandoah National Park",
-			"Theodore Roosevelt National Park",
-			"Virgin Islands National Park",
-			"Voyageurs National Park",
-			"Wind Cave National Park",
-			"Wrangell St. Elias National Park and Preserve",
-			"Yellowstone National Park",
-			"Yosemite National Park",
-			"Zion National Park"
-	    ];
-	    $( "#parkName" ).autocomplete({
-	      source: availableTags
-	    });
+	    var data = {
+    "one potato": 1,
+        "two potato": 2,
+        "three potato": 3,
+        "four": 4,
+        "five potato": 5,
+        "six potato": 6,
+        "seven potato": 7,
+        "more": Number.POSITIVE_INFINITY
+}
+
+    function autocomplete($ctl, data, cb, freeInput) {
+        $ctl.autocomplete({
+            minLength: 1,
+            autoFocus: true,
+            messages: {
+                noResults: '',
+                results: function () {}
+            },
+            source: function (request, response) {
+                var result = $.grep(Object.keys(data), function (el) {
+                    return el.indexOf(request.term) === 0
+                });
+                response(result)
+            },
+            select: function (e, ui) {
+                console.log("ui.item", ui.item)
+                cb(e, ui)
+            },
+            change: function (e, ui) {
+                if (!(freeInput || ui.item)) e.target.value = "";
+            }
+        });
+    }
+
+autocomplete($('#potatos'), data, function () {});
+
 	  } );
   </script>
 
@@ -143,15 +128,10 @@
 
 <h2>[TRAVEL]<H2>
 <h1>Just Right</h1>
-<h2>You know where. We tell you when.</h2>
+<h2><span>You know where. </span><span>We tell you when.</span></h2>
 
-<div id="search-field" class="ui-widget">		
-	<form ng-submit="getRec()">
-	    <input type="text" placeholder="Enter national park*" id="parkName" class="input-field"> 
-	    <input type="submit" value="Submit" onclick="updateCharts()" class="button">
-	</form>
-</div>
-  
+<label for="potatos">How many you got? </label><input name="potatos" id="potatos" type="text"></input>
+
 <div class="sliders-container">
 
 	<div class="option">
@@ -160,12 +140,12 @@
 		<div class="slider">
 			<div id="slider1"></div>
 		</div>
-		<p class="slider-text">Dislike them<p/>
+		<p class="slider-text">Dislike <span class="m-hide">them</span><p/>
 	</div>
 	
 	<div style="clear: both;"></div>
 	
-	<div class="option2">
+	<div class="option">
 		<p>What's your ideal temperature?</p>
 		<div id="temp_field"><input type="text" id="amount" class="input-field">&deg; F</div>
 		<div class="slider">
@@ -176,14 +156,26 @@
 	
 	<div style="clear: both;"></div>
 	
+	<div class="option">
+		<p>Which matters more to you?</p>
+		<p class="slider-text">Temp<span class="m-hide">erature</span></p>
+		<div class="slider">
+			<div id="slider3"></div>
+		</div>
+		<p class="slider-text">Crowd <span class="m-hide">level</span><p/>
+	</div>
+	
+	<div style="clear: both;"></div>	
+	
 </div>
 
 <div style="clear: both;"></div>
 
-<div class="double-chart-container">
+<div class="double-chart-container"> 
 
-	<p class="chart" id="rec-text">Go to {{rec.name}} in {{rec.month}}</p>
-				 		
+	<p class="chart" id="rec-text">Go to {{rec2.name}} in {{rec2.month}}</p>
+	<p id="not-found-text">The destination you entered was not found. Please try again.</p>
+					 		
 	<div class="chart-container">
  		<div class="chart">
 			<p>[Crowds]</p>
@@ -203,9 +195,16 @@
 <p class="disclaimer">*Presently, we only support recommendations for America's 59 national parks. More destinations to come.</p>
 
 <script>
+/*
+	window.onerror = function() {
+	    $(".chart").hide(); 
+	    $("#not-found-text").show();
+	};
+*/	
 	
     $(".chart").hide(); 
-	
+    $("#not-found-text").hide(); 
+    	
 	var chart = c3.generate({
 		bindto: '#visitor-chart',
 		
@@ -215,7 +214,7 @@
 	    },
 	    
 	    color: {
-					pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+			pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
 		},
 	    
 		axis: {
@@ -247,17 +246,17 @@
 	
 		var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
 		var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
-		  
-		$(".chart").show(); 
-		    
+
 	    chart.load({
 	        url: visitorData
 	    });
-		
+	    		
 	    chart2.load({
 	        url: weatherData
 	    });
-	  
+
+		$(".chart").show(); 
+									  
 	}
 	
 </script>
