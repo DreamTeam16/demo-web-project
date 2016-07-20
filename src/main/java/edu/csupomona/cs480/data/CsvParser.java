@@ -188,9 +188,9 @@ public class CsvParser {
 		int[] recVisitors = new int[13]; 
 		park.setName(parkName);
 		WeatherParser test= new WeatherParser();
-		test.yosemiteWeatherParser();
-		park.setHighWeather(test.highs);
-		park.setLowWeather(test.lows);
+//		test.yosemiteWeatherParser();
+//		park.setHighWeather(test.highs);
+//		park.setLowWeather(test.lows);
 		
 		for(int i = 0; i < 13; i++){
 			recVisitors[i] = 0;
