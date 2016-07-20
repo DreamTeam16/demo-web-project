@@ -1,57 +1,297 @@
-<html ng-app="cs480App">
-	<!-- This page uses AngularJS -->
-	<head>
-	    <title>CS480 Demo HomePage using AngularJS</title>
-	    
-	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
-	    
-	    <!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-		
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-		
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-	    <script>
-	    var cs480App = angular.module('cs480App', []);
+<html>
+<!-- This page will be shown when you git the root URL -->
+<head>
+    <title>[Travel] Just Right</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- miscellaneous js -->
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-		cs480App.controller('GpsCtrl', function ($scope, $http) {
-		
-		  $scope.listAllGpsProducts = function() {
-			  $http.get("graph")
-			  	.success(function(data){
-			  		$scope.products = data;
-			  	});
-		  }
-		
-		  $scope.listAllGpsProducts();
-		
+	<!-- site-wide custom css -->
+	<link href="main.css" rel="stylesheet" type="text/css">
+	
+	<!-- for charts -->
+	<link href="/js/c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
+	<script src="/js/c3/d3.min.js"></script>
+	<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
+	
+	<!-- for slider -->
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/resources/demos/style.css">
+  
+	<script>
+		$(function() {
+			$("#slider1").slider({
+				range: "min",
+				min: 1,
+				max: 13,
+				value: 6
+			});
 		});
-	    </script>
-	</head>
 
-	<body ng-controller="GpsCtrl">
-		<div>
-	        This is a simple page to demonstrate the web UI development.
-	        The key tools and techniques used include:
-	        <ul>
-	            <li>HTML - Obviously</li>
-	            <li><a href="https://angularjs.org/">AngularJS</a></li>
-	            <li><a href="http://jquery.com/">JQuery</a></li>
-	            <li><a href="http://api.jquery.com/jquery.ajax/">JQuery - AJAX</a></li>
-	        </ul>
-	    </div>
+		$(function() {
+			$("#slider2").slider({
+				range: "min",
+				min: 0,
+				max: 100,
+				value: 68,
+				slide: function(event, ui) {
+					$("#amount").val(ui.value);
+				}
+			});
+			$("#amount").val( $("#slider2").slider("value"));
+		});
+		
+		$(function() {
+			$("#slider3").slider({
+				range: "min",
+				min: 1,
+				max: 12,
+				value: 6
+			});
+		});
 
-	    <hr>
+	</script>
+	
+	<!-- for angular JS to get recommendation -->
+	<script>
+	var cs480App = angular.module('cs480App', []);
 
-	    <div>
-	        <div>
-				{{products}}	            
-	        </div>	    	        
-	    </div>
+	cs480App.controller('recCtrl', function ($scope, $http) {
+		 				
+	$scope.getRec2 = function() {
+	
+		var myParams = { 
+			parkName: String($("#parkName").val()),
+			prefCrowds: $("#slider1").slider("value"),
+			prefTemp: $("#slider2").slider("value"),
+			prefWeight: $("#slider3").slider("value")
+		}
+		
+		$http.get("getRec2", { params: myParams } )
+			.success(function(data){
+				$scope.rec2 = data;
+		});
+	}
 
-	</body>
+	});
+	</script>
+	
+	<script>
+	  $( function() {
+	    var availableTags = [
+		    "Acadia National Park",
+			"Arches National Park",
+			"Badlands National Park",
+			"Big Bend National Park",
+			"Biscayne National Park",
+			"Black Canyon of the Gunnison National Park",
+			"Bryce Canyon National Park",
+			"Canyonlands National Park",
+			"Capitol Reef National Park",
+			"Carlsbad Caverns National Park",
+			"Channel Islands National Park",
+			"Congaree National Park",
+			"Crater Lake National Park",
+			"Cuyahoga Valley National Park",
+			"Death Valley National Park",
+			"Denali National Park & Preserve",
+			"Dry Tortugas National Park",
+			"Everglades National Park",
+			"Gates of the Arctic National Park",
+			"Glacier Bay National Park",
+			"Glacier National Park",
+			"Grand Canyon National Park",
+			"Grand Teton National Park",
+			"Great Basin National Park",
+			"Great Sand Dunes National Park and Preserve",
+			"Great Smoky Mountains National Park",
+			"Guadalupe Mountains National Park",
+			"Haleakala National Park",
+			"Hawaii Volcanoes National Park",
+			"Hot Springs National Park",
+			"Isle Royale National Park",
+			"Joshua Tree National Park",
+			"Katmai National Park and Preserve",
+			"Kenai Fjords National Park",
+			"Kings Canyon National Park",
+			"Kobuk Valley National Park",
+			"Lake Clark National Park",
+			"Lassen Volcanic National Park",
+			"Mammoth Cave National Park",
+			"Mesa Verde National Park",
+			"Mount Rainier National Park",
+			"National Park of American Samoa",
+			"North Cascades National Park",
+			"Olympic National Park",
+			"Petrified Forest National Park",
+			"Pinnacles National Park",
+			"Redwood National Park",
+			"Rocky Mountain National Park",
+			"Saguaro National Park",
+			"Sequoia National Park",
+			"Shenandoah National Park",
+			"Theodore Roosevelt National Park",
+			"Virgin Islands National Park",
+			"Voyageurs National Park",
+			"Wind Cave National Park",
+			"Wrangell St. Elias National Park and Preserve",
+			"Yellowstone National Park",
+			"Yosemite National Park",
+			"Zion National Park"
+	    ];
+	    $( "#parkName" ).autocomplete({
+	      source: availableTags
+	    });
+	  } );
+  </script>
+
+</head>
+
+<body ng-app="cs480App" ng-controller="recCtrl">
+
+<h2>[TRAVEL]<H2>
+<h1>Just Right</h1>
+<h2><span>You know where. </span><span>We tell you when.</span></h2>
+
+<div id="search-field" class="ui-widget">		
+	<form ng-submit="getRec2()">
+	    <input type="text" placeholder="Enter national park*" id="parkName" class="input-field"> 
+	    <input type="submit" value="Submit" onclick="updateCharts()" class="button">
+	</form>
+</div>
+  
+<div class="sliders-container">
+
+	<div class="option">
+		<p>How do you feel about crowds?</p>
+		<p class="slider-text">Don't mind</p>
+		<div class="slider">
+			<div id="slider1"></div>
+		</div>
+		<p class="slider-text">Dislike <span class="m-hide">them</span><p/>
+	</div>
+	
+	<div style="clear: both;"></div>
+	
+	<div class="option">
+		<p>What's your ideal temperature?</p>
+		<div id="temp_field"><input type="text" id="amount" class="input-field">&deg; F</div>
+		<div class="slider">
+			<div id="slider2"></div>
+		</div>
+		
+	</div>
+	
+	<div style="clear: both;"></div>
+	
+	<div class="option">
+		<p>Which matters more to you?</p>
+		<p class="slider-text">Temp<span class="m-hide">erature</span></p>
+		<div class="slider">
+			<div id="slider3"></div>
+		</div>
+		<p class="slider-text">Crowd <span class="m-hide">level</span><p/>
+	</div>
+	
+	<div style="clear: both;"></div>	
+	
+</div>
+
+<div style="clear: both;"></div>
+
+<div class="double-chart-container"> 
+
+	<p class="chart" id="rec-text">Go to {{rec2.name}} in {{rec2.month}}</p>
+	<p id="not-found-text">The destination you entered was not found. Please try again.</p>
+					 		
+	<div class="chart-container">
+ 		<div class="chart">
+			<p>[Crowds]</p>
+	 		<div id="visitor-chart"></div>
+ 		</div>
+	</div>
+
+	<div class="chart-container">
+ 		<div class="chart">
+			<p>[Weather]</p>
+	 		<div id="weather-chart"></div>
+ 		</div>
+	</div>
+
+</div>
+
+<p class="disclaimer">*Presently, we only support recommendations for America's 59 national parks. More destinations to come.</p>
+
+<script>
+/*
+	window.onerror = function() {
+	    $(".chart").hide(); 
+	    $("#not-found-text").show();
+	};
+*/	
+	
+    $(".chart").hide(); 
+    $("#not-found-text").hide(); 
+    	
+	var chart = c3.generate({
+		bindto: '#visitor-chart',
+		
+	    data: {
+	        url: '/data/parks/chart-data/visitor-data/Joshua Tree National Park.csv',
+	        type: 'bar'
+	    },
+	    
+	    color: {
+			pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+		},
+	    
+		axis: {
+			y: { 
+				tick: {
+					format: d3.format(",")
+					}
+				}
+	    	}
+
+	});
+
+	
+	var chart2 = c3.generate({
+		bindto: '#weather-chart',
+		
+	    data: {
+	        url: '/data/parks/chart-data/weather-data/Joshua Tree National Park.csv',
+	        type: 'bar'
+	    },
+	    
+	    color: {
+			pattern: ['#d62728', '#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+		},
+	    
+	});
+	
+	function updateCharts() {
+	
+		var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
+		var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
+
+	    chart.load({
+	        url: visitorData
+	    });
+	    		
+	    chart2.load({
+	        url: weatherData
+	    });
+
+		$(".chart").show(); 
+									  
+	}
+	
+</script>
+</body>
 
 </html>
