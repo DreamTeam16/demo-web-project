@@ -53,10 +53,10 @@ public class TempAlg {
 		target=userPref;
 		
 		//average temperature
-		for (int i = 0; i<12; i++) {
-		temps[i] = (highs[i] + lows[i])/2;
-		System.out.println(temps[i]);
-		}
+//		for (int i = 0; i<12; i++) {
+//		temps[i] = (highs[i] + lows[i])/2;
+//		System.out.println(temps[i]);
+//		}
 		//old seasonal difference code
 		/* for (int i = 0; i<12; i++) {
 			if (5 < i && i < 11) // summer
@@ -65,6 +65,15 @@ public class TempAlg {
 			} else // winter
 				temps[i] = lows[i];// should be lows
 		} */
+		
+		//new seasonal double average code
+				for (int i = 0; i<12; i++) {
+					if (5 < i && i < 11) // summer
+					{
+						temps[i] = (highs[i] + ((highs[i] + lows[i])/2)/2);// average(average, highs)
+					} else // winter
+						temps[i] = (lows[i]+ ((highs[i] + lows[i])/2)/2);// average(average, low)
+				} 
 		
 	}
 
