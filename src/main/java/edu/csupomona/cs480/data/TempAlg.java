@@ -68,11 +68,12 @@ public class TempAlg {
 		
 		//new seasonal double average code
 				for (int i = 0; i<12; i++) {
+					int avg = (highs[i] + lows[i])/2;
 					if (5 < i && i < 11) // summer
 					{
-						temps[i] = (highs[i] + ((highs[i] + lows[i])/2)/2);// average(average, highs)
-					} else // winter
-						temps[i] = (lows[i]+ ((highs[i] + lows[i])/2)/2);// average(average, low)
+						temps[i] = ((highs[i] + avg)/2);// average(average, highs)
+					} else // winter			
+						temps[i] = ((lows[i]+ avg)/2);// average(average, low)
 				} 
 		
 	}
