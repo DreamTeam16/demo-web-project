@@ -121,10 +121,10 @@ public class WebController {
 	}
 	
 	//Zach Coulson's Method 
-	@RequestMapping(value = "/cio", method = RequestMethod.GET)
-		String page ="commonsio.html";
-		return page;
-	}
+//	@RequestMapping(value = "/cio", method = RequestMethod.GET)
+//		String page ="commonsio.html";
+	//	return page;
+//	}
 	
 	/**
 	 * This is a simple example of how to use a data manager
