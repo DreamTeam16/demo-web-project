@@ -188,13 +188,10 @@ public class CsvParser {
 		int[] recVisitors = new int[13]; 
 		park.setName(parkName);
 		WeatherParser.parseParkWeather(park);
-		int[] highs=park.getHighs();
-
 		
 		for(int i = 0; i < 13; i++){
 			recVisitors[i] = 0;
-			if( i<12)
-				System.out.println(highs[i]);
+			
 		}
 		
 		try {

@@ -4,9 +4,10 @@ body {
 
 p {
 	text-align: center;
-	font-family: tahoma;
+	font-family: tacoma;
 	font-size: 16px;
-	color: #222;
+	color: #FFFFFF;
+	text-shadow: 2px 2px #000000;
 }
 
 h1 {

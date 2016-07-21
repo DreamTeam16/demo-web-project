@@ -30,7 +30,7 @@ public class WeatherParser {
 		
 		try {
 			br = new BufferedReader(new FileReader(csvFile));
-			for(int i = 0; i < 2; ++i) 
+			for(int i = 0; i < 1; ++i) 
 				  br.readLine();
 			
 			int i = 0;
