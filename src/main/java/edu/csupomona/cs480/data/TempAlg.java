@@ -52,13 +52,17 @@ public class TempAlg {
 		int [] lows=park.getLows();
 		target=userPref;
 		
-		for (int i = 0; i<12; i++) {
+		//average temperature
+		temps[i] = (highs[i] + lows[i])/2;
+		
+		//old seasonal difference code
+		/* for (int i = 0; i<12; i++) {
 			if (5 < i && i < 11) // summer
 			{
 				temps[i] = highs[i];// should be highs
 			} else // winter
 				temps[i] = lows[i];// should be lows
-		}
+		} */
 		
 	}
 
