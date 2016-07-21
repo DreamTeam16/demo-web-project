@@ -28,10 +28,22 @@ h3 {
 }
 
 .button { 
-	font-size: 18px;
+	color: #66952e;	
+	padding: 8px 20px;
+	background: #e8e8e8;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
 	border-radius: 4px;
-	border-width: 1px;
-	padding: 2px 4px 2px 4px;
+	
+	background: #c0d59f;
+	background: -moz-linear-gradient(top, #c0d59f 51%, #aec985 51%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(51%,#c0d59f), color-stop(51%,#aec985));
+	background: -webkit-linear-gradient(top, #c0d59f 51%,#aec985 51%);
+	background: -o-linear-gradient(top, #c0d59f 51%,#aec985 51%);
+	background: -ms-linear-gradient(top, #c0d59f 51%,#aec985 51%);
+	background: linear-gradient(top, #c0d59f 51%,#aec985 51%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c0d59f', endColorstr='#aec985',GradientType=0 );
 }
 	
 .chart-container { 
@@ -54,6 +66,7 @@ h3 {
 }
 		
 
+
 .slider {
 	float: right;
 	width: 50%;
@@ -67,6 +80,7 @@ h3 {
 	margin-right: 5px;
 	margin-left: 5px;
 }
+
 
 input[type=text] {
     border: 1px solid #aaaaaa;
@@ -92,6 +106,8 @@ input[type=text] {
 	margin: 0px 0px 10px 20px;
  	float: right;
 	width: 30%;
+	color: #FFFFFF;
+	text-shadow: 2px 2px #000000;
 }
 
 
