@@ -120,6 +120,12 @@ public class WebController {
 		return page;
 	}
 	
+	//Zach Coulson's Method 
+	@RequestMapping(value = "/cio", method = RequestMethod.GET)
+		String page ="commonsio.html";
+		return page;
+	}
+	
 	/**
 	 * This is a simple example of how to use a data manager
 	 * to retrieve the data and return it as an HTTP response.
