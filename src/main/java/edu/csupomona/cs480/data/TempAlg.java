@@ -53,8 +53,9 @@ public class TempAlg {
 		target=userPref;
 		
 		//average temperature
+		for (int i = 0; i<12; i++) {
 		temps[i] = (highs[i] + lows[i])/2;
-		
+		}
 		//old seasonal difference code
 		/* for (int i = 0; i<12; i++) {
 			if (5 < i && i < 11) // summer

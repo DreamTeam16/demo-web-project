@@ -13,15 +13,15 @@ import org.jsoup.select.Elements;
 
 public class WeatherParser {
 	
-	public static void main(String[] args) {
-		parseParkWeather("Arches National Park");
-	}
+	//public static void main(String[] args) {
+	//	parseParkWeather("Arches National Park");
+	//}
 	
-	public static ParkData parseParkWeather(String parkName) {
-		ParkData park = new ParkData();
+	public static  void parseParkWeather(ParkData park) {
+		
 		int[] highs = new int[12];
 		int[] lows = new int[12];
-		park.setName(parkName);
+		String parkName= park.getName();
 		String line = "";
 		
 		BufferedReader br = null;
@@ -60,9 +60,9 @@ public class WeatherParser {
 				}
 			}
 		}
-		return park;
+		
 	}
-
+/*
 	public static void OlympicWeather() {
 		String[] highs = new String[12];
 		String[] lows = new String[12];
@@ -2881,5 +2881,5 @@ public class WeatherParser {
 		}
 		return "Yosemite Weather for Each Month \nHighs: " + temp + "\n" + "Lows: " + lowtemps;
 	}
-
+*/
 }
