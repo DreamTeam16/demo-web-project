@@ -119,8 +119,8 @@ public class DensityAlg {
 		}
 		 month=rankings[1];
 		 Collections.reverse(Arrays.asList(rankings));
-		 for(int x=0;x<12;x++)
-		 System.out.println(rankings[x]);
+		// for(int x=0;x<12;x++)
+		//System.out.println(rankings[x]);
 		 return rankings;
 	 }
 

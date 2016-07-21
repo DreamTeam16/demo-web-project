@@ -17,7 +17,7 @@ public class TempAlg {
 		calcScore();
 		calcStdDev();
 		calcScore();
-		tempToString();
+		//tempToString();
 	}
 
 	//for testing
@@ -55,6 +55,7 @@ public class TempAlg {
 		//average temperature
 		for (int i = 0; i<12; i++) {
 		temps[i] = (highs[i] + lows[i])/2;
+		System.out.println(temps[i]);
 		}
 		//old seasonal difference code
 		/* for (int i = 0; i<12; i++) {
@@ -168,8 +169,8 @@ public class TempAlg {
 		
 		 Collections.reverse(Arrays.asList(rankings));
 		 month=rankings[11];
-		 for(int x=0;x<12;x++)
-		 System.out.println(rankings[x]);
+		 //for(int x=0;x<12;x++)
+		 //System.out.println(rankings[x]);
 		 return rankings;
 	}
 

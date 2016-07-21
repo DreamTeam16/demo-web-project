@@ -7,11 +7,11 @@ public class WeightedRankings {
 	public String name;
 	int prefCrowds;
 	int prefTemp;
-	int prefWeight;
+	double prefWeight;
 	ParkData park;
 	public String month;
-	float tempWeight;
-	float crowdsWeight;
+	double tempWeight;
+	double crowdsWeight;
 	
 	
 	public WeightedRankings(ParkData park, int prefCrowds, int prefTemp, int prefWeight)
@@ -21,51 +21,60 @@ public class WeightedRankings {
 		this.prefCrowds=prefCrowds;
 		this.prefTemp=prefTemp;
 		this.prefWeight=prefWeight;	
+	
 	}
 	
 	public void getWeight()
 	{
-		//scaling down weights
-		prefWeight = prefWeight/10;
+		
+		
+		System.out.println("prefWeight: "+ prefWeight);
 		//slider all the way to crowds
-		if (prefWeight == .1){
-			crowdsWeight = (float) 1.2;
-			tempWeight = (float) .1;
+		if (prefWeight == 1){
+			crowdsWeight =  12;
+			tempWeight =  1;
 		}
 		//slider closer to crowds side
-	else if (prefWeight < .6)
+	else if (prefWeight < 6)
 		{
-			tempWeight = (float) (1.2 - prefWeight);
-			crowdsWeight = (float) (1.2 - tempWeight);
+		
+			crowdsWeight =12 - prefWeight;
+			tempWeight =  (12 - crowdsWeight);
+			
 		}
 		//slider in middle
-		else if (prefWeight == .6) {
-			crowdsWeight = (float) .6;
-			tempWeight = (float) .6;
+		else if (prefWeight == 6) {
+			crowdsWeight =  6;
+			tempWeight =  6;
+
 		}
 		//slider closer to temp side
-		else if (prefWeight <1.2){
+		else if (prefWeight <12){
 			tempWeight = prefWeight;
-			crowdsWeight = (float) (1.3 - crowdsWeight);
+			crowdsWeight =  (12 - tempWeight);
+
 	}
 	//slider all the way to temp
 		else{
-			tempWeight = (float) 1.2;
-			crowdsWeight = (float) .1;
+			tempWeight =  12;
+			crowdsWeight =  1;
 		}
-		
+		tempWeight=tempWeight/10;
+		crowdsWeight=crowdsWeight/10;
 	}
 	
 	public void getRankings()
 	{
 		DensityAlg den= new DensityAlg(park, prefCrowds);
 		TempAlg temp=new TempAlg(park,prefTemp);
-		float[] rank=new float[12];
+		double[] rank=new double[12];
 		getWeight();
-		if(prefCrowds>80)
+		if(prefCrowds>10)
 		{
-			crowdsWeight=0;
+			crowdsWeight= .1;
+			tempWeight+=.1;
 		}
+		System.out.println("crowds:"+crowdsWeight+"temps:"+tempWeight);
 		String[] density=den.getDensityRankings();
 		String[] tRank=temp.Rankings();
 		
@@ -108,10 +117,11 @@ public class WeightedRankings {
 			}
 		}
 		int highest=0;
-		for(int i=1;i<12;i++)
+		for(int i=0;i<12;i++)
 		{
 			if(rank[highest]<rank[i])
 				highest=i;
+		//	System.out.println(rank[highest]);
 				
 		}
 		
