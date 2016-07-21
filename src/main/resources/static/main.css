@@ -1,8 +1,7 @@
 body {
   background-image: url("http://theabf.org/sites/default/files/nocredityosemite.jpg");
-  background-repeat: no-repeat;
   background-position: right top;
-  font-family: garamond;
+  font-family: tahoma;
 }
 
 
@@ -274,9 +273,9 @@ ul li {
 
 h2 { 
 
-color: #d04764; 
-
-font-family: 'Lobster', cursive; 
+color: #CEF0D4 !important; 
+  
+font-family: 'Rouge Script', cursive; 
 
 font-size: 36px; 
 
@@ -286,8 +285,7 @@ line-height: 48px;
 
 margin: 0 0 18px; 
 
-text-shadow: 1px 0 0 #fff; 
-
+text-shadow: 1px 1px #000; 
 }
 
 
@@ -307,7 +305,7 @@ margin: 0 0 50px;
 
 text-align: center; 
 
-text-shadow: 1px 1px 2px #082b34; 
+text-shadow: 1px 1px #000; 
 
 }
 
