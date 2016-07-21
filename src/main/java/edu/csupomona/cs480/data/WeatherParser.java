@@ -37,9 +37,7 @@ public class WeatherParser {
 			while ((line = br.readLine()) != null) {
 					String[] temp = line.split(",");
 					highs[i] = Integer.parseInt(temp[0]);
-//					System.out.println(temp[1]);
 					lows[i] = Integer.parseInt(temp[1].trim());
-					
 					System.out.println("High: " + highs[i] + " Lows: " + lows[i]);
 					i++;	
 			}
