@@ -116,7 +116,7 @@ public class WeightedRankings {
 					
 			}
 		}
-		int[] ranked={0,0,0};
+		int[] ranked={0,1,2};
 		
 		for(int i=0;i<12;i++)
 		{System.out.println(rank[i]);
