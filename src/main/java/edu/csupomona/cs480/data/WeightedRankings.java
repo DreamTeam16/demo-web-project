@@ -10,8 +10,8 @@ public class WeightedRankings {
 	int prefWeight;
 	ParkData park;
 	public String month;
-	int tempWeight;
-	int crowdsWeight;
+	float tempWeight;
+	float crowdsWeight;
 	
 	
 	public WeightedRankings(ParkData park, int prefCrowds, int prefTemp, int prefWeight)
@@ -25,31 +25,33 @@ public class WeightedRankings {
 	
 	public void getWeight()
 	{
+		//scaling down weights
+		prefWeight = prefWeight/10;
 		//slider all the way to crowds
-		if (prefWeight == 1){
-			crowdsWeight = 12;
-			tempWeight = 1;
+		if (prefWeight == .1){
+			crowdsWeight = 1.2;
+			tempWeight = .1;
 		}
 		//slider closer to crowds side
-	else if (prefWeight < 6)
+	else if (prefWeight < .6)
 		{
-			tempWeight = 12 - prefWeight;
-			crowdsWeight = 12 - tempWeight;
+			tempWeight = 1.2 - prefWeight;
+			crowdsWeight = 1.2 - tempWeight;
 		}
 		//slider in middle
-		else if (prefWeight == 6) {
-			crowdsWeight = 6;
-			tempWeight = 6;
+		else if (prefWeight == .6) {
+			crowdsWeight = .6;
+			tempWeight = .6;
 		}
 		//slider closer to temp side
-		else if (prefWeight <12){
+		else if (prefWeight <1.2){
 			tempWeight = prefWeight;
-			crowdsWeight = 13 - crowdsWeight;
+			crowdsWeight = 1.3 - crowdsWeight;
 	}
 	//slider all the way to temp
 		else{
-			tempWeight = 12;
-			crowdsWeight = 1;
+			tempWeight = 1.2;
+			crowdsWeight = .1;
 		}
 		
 	}
