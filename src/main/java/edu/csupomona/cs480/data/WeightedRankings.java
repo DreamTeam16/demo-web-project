@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class WeightedRankings {
-	public String name;
-	int prefCrowds;
-	int prefTemp;
-	int prefWeight;
 	ParkData park;
-	public String month;
+	float prefCrowds;
+	float prefTemp;
+	float prefWeight;
 	float tempWeight;
 	float crowdsWeight;
+	public String month;
+	public String name;
 	
 	
 	public WeightedRankings(ParkData park, int prefCrowds, int prefTemp, int prefWeight)
