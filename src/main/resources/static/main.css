@@ -402,11 +402,8 @@ margin-left: 5px;
 
 
 input[type=text] {
-
     border: 1px solid #aaaaaa;
-
-padding: 2px;
-
+	padding: 2px;
     border-radius: 4px;
 
 }
