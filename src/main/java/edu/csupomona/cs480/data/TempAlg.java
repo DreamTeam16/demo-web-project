@@ -74,6 +74,8 @@ public class TempAlg {
 						temps[i] = ((highs[i] + avg)/2);// average(average, highs)
 					} else // winter			
 						temps[i] = ((lows[i]+ avg)/2);// average(average, low)
+				
+					System.out.println(temps[i]);
 				} 
 		
 	}

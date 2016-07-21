@@ -9,7 +9,7 @@ public class WeightedRankings {
 	int prefTemp;
 	double prefWeight;
 	ParkData park;
-	public String month;
+	public String[] month=new String[3];
 	double tempWeight;
 	double crowdsWeight;
 	
@@ -116,46 +116,57 @@ public class WeightedRankings {
 					
 			}
 		}
-		int highest=0;
+		int[] ranked={0,0,0};
+		
 		for(int i=0;i<12;i++)
-		{
-			if(rank[highest]<rank[i])
-				highest=i;
+		{System.out.println(rank[i]);
+		
+		System.out.println("Highgest "+rank[ranked[2]]+"new value "+rank[i]);
+			if(rank[ranked[2]]<=rank[i])
+				{
+				ranked[0]=ranked[1];
+				ranked[1]=ranked[2];
+				ranked[2]=i;
+				}
+			
+				
 		//	System.out.println(rank[highest]);
 				
 		}
-		
-		switch (highest)
+		for(int i=0;i<3;i++)
 		{
-		case 0: month="Janurary";
-		break;
-		case 1: month="Feburary";
-		break;		
-		case 2: month="March";
-		break;
-		case 3:month="April";
-		break;
-		case 4:month="May";
-		break;
-		case 5: month="June";
-		break;
-		case 6: month="July";
-		break;
-		case 7: month="August";
-		break;
-		case 8: month="September";
-		break;
-		case 9: month="October";
-		break;
-		case 10: month="November";
-		break;
-		case 11: month="December";
-		break;
-				
-		default: month="TESTING";
-		break;
+			switch (ranked[i])
+			{
+			case 0: month[i]="Janurary";
+			break;
+			case 1: month[i]="Feburary";
+			break;		
+			case 2: month[i]="March";
+			break;
+			case 3:month[i]="April";
+			break;
+			case 4:month[i]="May";
+			break;
+			case 5: month[i]="June";
+			break;
+			case 6: month[i]="July";
+			break;
+			case 7: month[i]="August";
+			break;
+			case 8: month[i]="September";
+			break;
+			case 9: month[i]="October";
+			break;
+			case 10: month[i]="November";
+			break;
+			case 11: month[i]="December";
+			break;
+					
+			default: month[i]="TESTING";
+			break;
+			}
+			
 		}
-		
 	}
 
 }
