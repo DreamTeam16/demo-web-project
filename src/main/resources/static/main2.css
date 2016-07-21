@@ -27,7 +27,7 @@ h3 {
 	text-align: center;
 	color: #ffffff; 
 	color: #CEF0D4; 
-  font-family: 'Rouge Script', cursive; 
+  font-family: 'muli', cursive; 
 	text-shadow: 1px 1px #000; 
 }
 
@@ -130,6 +130,7 @@ input[type=text] {
 .about {
 	font-size: 10px;
 	text-shadow: 1px 1px #000000;
+	margin-top: 250px;
 }	
 		
 @media only screen and (max-width: 980px) {
@@ -184,6 +185,11 @@ input[type=text] {
 		text-align: center;
 	}
 
+}
+
+.disclaimer a {
+	color: #fff;
+	text-decoration: none;
 }
 
 .disclaimer {

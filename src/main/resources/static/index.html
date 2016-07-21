@@ -209,7 +209,7 @@ $scope.rec2 = data;
 
 <select id="parkName" class="dp-menu">
 
-<option disabled selected>Select national park*</option>
+<option disabled selected>Select national park</option>
 
 <option>Acadia National Park</option>
 
@@ -406,6 +406,7 @@ $scope.rec2 = data;
 
 <div class="double-chart-container"> 
 
+<p id="not-found-text">The destination you entered was not found. Please try again.</p>
 
 
 <!--<p class="chart" id="rec-text">Go to {{rec2.name}} in {{rec2.month}}</p>
@@ -458,15 +459,11 @@ code for three suggestions instead of one
 </div>
 
 
-
-
-<p class="disclaimer">*Presently, we only support recommendations for America's 59 national parks. More destinations to come.</p>
-<p class="about"><a href="http://cs480-projects.github.io/teams-summer2016/dreamteam/index.html">About Travel Just Right</a></p>
+<p class="disclaimer"><a href="http://cs480-projects.github.io/teams-summer2016/dreamteam/index.html">About us</a></p>
 
 
 <script>
 
-/*
 
 window.onerror = function() {
 
@@ -475,8 +472,6 @@ window.onerror = function() {
     $("#not-found-text").show();
 
 };
-
-*/
 
 
     $(".chart").hide(); 
@@ -575,7 +570,8 @@ categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct
 
 function updateCharts() {
 
-
+    $("#not-found-text").hide();
+    
 var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
 
 var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
