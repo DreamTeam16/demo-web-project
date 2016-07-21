@@ -1,9 +1,15 @@
 body {
+<<<<<<< HEAD
 
   background-image: url("http://theabf.org/sites/default/files/nocredityosemite.jpg");
 
   background-repeat: no-repeat;
 
+=======
+  background-image: url("http://media.t3.com/img/resized/ma/xxl_MAC293mainfeatbackdrop-970-80.jpg");
+  background-repeat: no-repeat;
+  background-size:100%;
+>>>>>>> branch 'master' of https://github.com/DreamTeam16/demo-web-project.git
   background-position: right top;
 
   font-family: garamond;
