@@ -55,6 +55,7 @@ public class TempAlg {
 		//average temperature
 		for (int i = 0; i<12; i++) {
 		temps[i] = (highs[i] + lows[i])/2;
+		System.out.println(temps[i]);
 		}
 		//old seasonal difference code
 		/* for (int i = 0; i<12; i++) {
