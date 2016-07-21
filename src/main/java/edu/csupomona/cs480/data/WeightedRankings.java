@@ -4,14 +4,14 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class WeightedRankings {
+	public String name;
+	int prefCrowds;
+	int prefTemp;
+	int prefWeight;
 	ParkData park;
-	float prefCrowds;
-	float prefTemp;
-	float prefWeight;
+	public String month;
 	float tempWeight;
 	float crowdsWeight;
-	public String month;
-	public String name;
 	
 	
 	public WeightedRankings(ParkData park, int prefCrowds, int prefTemp, int prefWeight)
@@ -29,29 +29,29 @@ public class WeightedRankings {
 		prefWeight = prefWeight/10;
 		//slider all the way to crowds
 		if (prefWeight == .1){
-			crowdsWeight = 1.2;
-			tempWeight = .1;
+			crowdsWeight = (float) 1.2;
+			tempWeight = (float) .1;
 		}
 		//slider closer to crowds side
 	else if (prefWeight < .6)
 		{
-			tempWeight = 1.2 - prefWeight;
-			crowdsWeight = 1.2 - tempWeight;
+			tempWeight = (float) (1.2 - prefWeight);
+			crowdsWeight = (float) (1.2 - tempWeight);
 		}
 		//slider in middle
 		else if (prefWeight == .6) {
-			crowdsWeight = .6;
-			tempWeight = .6;
+			crowdsWeight = (float) .6;
+			tempWeight = (float) .6;
 		}
 		//slider closer to temp side
 		else if (prefWeight <1.2){
 			tempWeight = prefWeight;
-			crowdsWeight = 1.3 - crowdsWeight;
+			crowdsWeight = (float) (1.3 - crowdsWeight);
 	}
 	//slider all the way to temp
 		else{
-			tempWeight = 1.2;
-			crowdsWeight = .1;
+			tempWeight = (float) 1.2;
+			crowdsWeight = (float) .1;
 		}
 		
 	}
@@ -60,7 +60,7 @@ public class WeightedRankings {
 	{
 		DensityAlg den= new DensityAlg(park, prefCrowds);
 		TempAlg temp=new TempAlg(park,prefTemp);
-		int[] rank=new int[12];
+		float[] rank=new float[12];
 		getWeight();
 		if(prefCrowds>80)
 		{
