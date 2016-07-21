@@ -17,7 +17,7 @@ public class TempAlg {
 		calcScore();
 		calcStdDev();
 		calcScore();
-		tempToString();
+		//tempToString();
 	}
 
 	//for testing
@@ -168,8 +168,8 @@ public class TempAlg {
 		
 		 Collections.reverse(Arrays.asList(rankings));
 		 month=rankings[11];
-		 for(int x=0;x<12;x++)
-		 System.out.println(rankings[x]);
+		 //for(int x=0;x<12;x++)
+		 //System.out.println(rankings[x]);
 		 return rankings;
 	}
 

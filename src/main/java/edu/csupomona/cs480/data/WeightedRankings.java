@@ -46,7 +46,7 @@ public class WeightedRankings {
 		//slider closer to temp side
 		else if (prefWeight <1.2){
 			tempWeight = prefWeight;
-			crowdsWeight = (float) (1.3 - crowdsWeight);
+			crowdsWeight = (float) (1.2 - crowdsWeight);
 	}
 	//slider all the way to temp
 		else{
@@ -62,14 +62,14 @@ public class WeightedRankings {
 		TempAlg temp=new TempAlg(park,prefTemp);
 		float[] rank=new float[12];
 		getWeight();
-		if(prefCrowds>80)
+		if(prefCrowds>95)
 		{
-			crowdsWeight=0;
+			crowdsWeight=(float) .1;
 		}
 		String[] density=den.getDensityRankings();
 		String[] tRank=temp.Rankings();
 		
-		for(int x=0;x<12;x++)
+		for(int x=1;x<12;x++)
 		{
 			for(int i=0;i<12;i++)
 			{
@@ -108,10 +108,11 @@ public class WeightedRankings {
 			}
 		}
 		int highest=0;
-		for(int i=1;i<12;i++)
+		for(int i=0;i<12;i++)
 		{
 			if(rank[highest]<rank[i])
 				highest=i;
+			System.out.println(rank[highest]);
 				
 		}
 		
