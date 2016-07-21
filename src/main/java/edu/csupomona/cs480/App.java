@@ -14,7 +14,7 @@ import edu.csupomona.cs480.data.provider.UserManager;
 @ComponentScan
 public class App {
  
-    /**
+    /** 
      * This is a good example of how Spring instantiates
      * objects. The instances generated from this method
      * will be used in this project, where the Autowired
@@ -24,8 +24,8 @@ public class App {
     public UserManager userManager() {
         UserManager userManager = new FSUserManager();
         return userManager;
-    }
-
+    } 
+ 
     /**
      * This is the running main method for the web application.
      * Please note that Spring requires that there is one and
