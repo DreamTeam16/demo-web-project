@@ -147,7 +147,17 @@ $scope.rec2 = data;
 
 <body ng-app="cs480App" ng-controller="recCtrl">
 
-
+<script>
+	var bgColorArray = ['http://www.trbimg.com/img-530e8beb/turbine/la-tr-yosemite-20130616-photos-028',
+	'http://www.trbimg.com/img-51b9144e/turbine/la-tr-yosemite-20130616-photos-010', 
+	'https://c1.staticflickr.com/9/8683/27837540184_346511e530_h.jpg', 
+	'http://theabf.org/sites/default/files/nocredityosemite.jpg', 
+	'https://c2.staticflickr.com/4/3928/14937541893_54ca15b6b5_h.jpg', 
+	'https://c2.staticflickr.com/6/5647/22147861080_77fc5e9a1c_h.jpg'],
+	    selectBG = bgColorArray[Math.floor(Math.random() * bgColorArray.length)];
+	 
+	$('body').css('background', 'url(' + selectBG + ')', 'background-position: right top')
+</script>
 
 <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
@@ -537,7 +547,7 @@ bindto: '#weather-chart',
 
     color: {
 
-pattern: ['#d62728', '#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+pattern: ['#d62728', '#1f77b4', '#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
 
 },
 
