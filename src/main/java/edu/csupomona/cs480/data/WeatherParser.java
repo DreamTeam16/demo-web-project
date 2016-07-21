@@ -1,5 +1,8 @@
 package edu.csupomona.cs480.data;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -10,128 +13,57 @@ import org.jsoup.select.Elements;
 
 public class WeatherParser {
 	
-	/*
 	public static void main(String[] args) {
-		AcadiaWeather();
-		String arches = ArchesWeather();
-		System.out.println(arches);
-		BadlandsWeather();
-		String bigbend = BigBendWeather();
-		System.out.println(bigbend);
+		parseParkWeather("Arches National Park");
+	}
+	
+	public static ParkData parseParkWeather(String parkName) {
+		ParkData park = new ParkData();
+		int[] highs = new int[12];
+		int[] lows = new int[12];
+		park.setName(parkName);
+		String line = "";
 		
-		BiscayneWeather();
-		
-		BlackCanyonWeather();
-		
-		BryceCanyonWeather();
-		
-		CanyonlandsWeather();
-		
-		CapitolReefWeather();
-		
-		CarlsbadCavernsWeather();
-		
-		ChannelIslandsWeather();
-		
-		CongareeWeather();
-		
-		CraterLakeWeather();
-		
-		CuyahogaValleyWeather();
-		
-		DeathValleyWeather();
-		
-		DenaliWeather();
-		
-		DryTortugasWeather();
-		
-		EvergladesWeather();
-		
-		GatesofArcticWeather();
-		
-		GlacierBayWeather();
-		
-		GlacierWeather();
-		
-		GrandCanyonWeather();
-		
-		GrandTetonWeather();
-		
-		GreatBasinWeather();
-		
-		GreatSandDunesWeather();
-		
-		GreatSmokyMountainsWeather();
-		
-		GuadalupeMountainsWeather();
-		
-		HaleakalaWeather();
-		
-		HawaiiVolcanoesWeather();
-		
-		HotSpringsWeather();
-		
-		IsleRoyaleWeather();
-		
-		String jt = JSTreeWeatherParser();
-		System.out.println(jt);
-		
-		KatmaiWeather();
-		
-		KenaiFjordsWeather();
-		
-		KingsCanyonWeather();
-		
-		KobukValleyWeather();
-		
-		LakeClarkWeather();
-		
-		LassenVolcanicWeather();
-		
-		MammothCaveWeather();
-		
-		MesaVerdeWeather();
-		
-		MountRainierWeather();
-		
-		AmericanSamoaWeather();
-		
-		NorthCascadesWeather();
-		
-		OlympicWeather();
-		
-		PetrifiedForestWeather();
-		
-		PinnaclesWeather();
-		
-		RedwoodWeather();
-		
-		RockyMountainWeather();
-		
-		SaguaroWeather();
-		
-		SequoiaWeather();
-		
-		ShenandoahWeather();
-		
-		TheodoreRooseveltWeather();
-		
-		VirginIslandsWeather();
-		
-		VoyageursWeather();
-		
-		WindCaveWeather();
-		
-		WrangellWeather();
-		
-		YellowstoneWeather();		
-		
-		String yose = yosemiteWeatherParser();
-		System.out.println(yose);
-		
-		ZionWeather();
+		BufferedReader br = null;
 
-	}*/
+		String csvFile = "src/main/resources/static/data/parks/chart-data/weather-data/" + parkName + ".csv";
+		
+		try {
+			br = new BufferedReader(new FileReader(csvFile));
+			for(int i = 0; i < 2; ++i) 
+				  br.readLine();
+			
+			int i = 0;
+			while ((line = br.readLine()) != null) {
+					String[] temp = line.split(",");
+					highs[i] = Integer.parseInt(temp[0]);
+//					System.out.println(temp[1]);
+					lows[i] = Integer.parseInt(temp[1].trim());
+					
+					System.out.println("High: " + highs[i] + " Lows: " + lows[i]);
+					i++;	
+			}
+			
+			park.setHighWeather(highs);
+			park.setLowWeather(lows);
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			e.printStackTrace();
+		}finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return park;
+	}
 
 	public static void OlympicWeather() {
 		String[] highs = new String[12];

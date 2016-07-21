@@ -89,8 +89,6 @@
 <h1>Just Right</h1>
 <h2><span>You know where. </span><span>We tell you when.</span></h2>
 
-<div id="chartDiv"></div>
-
 <div id="search-field" class="ui-widget">		
 	<form ng-submit="getRec2()">
 		<select id="parkName" name="parkName">
@@ -215,7 +213,7 @@
 	<div class="chart-container">
  		<div class="chart">
 			<p>[Weather]</p>
-	 		<div id="weather-chart"></div>
+	 		<div id="chartDiv"></div>
  		</div>
 	</div>
 
@@ -225,16 +223,13 @@
 
 <script>
 var chartData = {
-  
-	  // Specify your chart type here
-	  // Try replacing 'bar' with 'line'.
 	  "type":"bar",
 	  
 	  scaleY: {
 	    label: { 
 		    text: "Degrees"
 	    },
-	    labels: [ "", 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+	    labels: [ "", 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110]
 	   },
 	    
 	  scaleX: {
@@ -250,7 +245,7 @@ var chartData = {
 	  
 	  // Insert your data here
 		"csv":{
-			"url":"/data/parks/chart-data/weather-data/Joshua Tree.csv"
+			"url":"/data/parks/chart-data/weather-data/Joshua Tree National Park.csv"
 		}
     
 	};
