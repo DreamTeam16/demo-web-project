@@ -1,5 +1,6 @@
 body {
-  background-image: url("http://media.t3.com/img/resized/ma/xxl_MAC293mainfeatbackdrop-970-80.jpg") no-repeat fixed center;
+  background-image: url("http://media.t3.com/img/resized/ma/xxl_MAC293mainfeatbackdrop-970-80.jpg");
+  background-repeat: no-repeat;
   background-size:100%;
   background-position: right top;
   font-family: garamond;
