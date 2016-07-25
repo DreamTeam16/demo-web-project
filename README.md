@@ -1,34 +1,25 @@
-Overview
---------
+About
+-----------------------------------------------------
+For Cal Poly Pomona's CS480 course, Software Engineering, a group of four students created a Web service that helps users answer a simple vacation question: When should I go? In deciding what problem to solve for our class project, we noticed that while many websites offer suggestions on when to visit a destination in the form of articles, none, to our knowledge, distill this information in an easy-to-digest format. This led us to create Travel Just Right. You simply select a destination, select your preferences, and our algorithm will tell you when to visit.
 
-The skeleton of the demo web project for CS480.
+Please visit our page at http://cs480-projects.github.io/teams-summer2016/dreamteam/index.html.
 
-This project is designed to let you practice the different aspects of software engineering, such as version control, design, tests, build, deployment, and maintenance.
+Dream Team Members
+-----------------------------------------------------
+Zachary Coulson, Jason Zhang, Jason La and Rocky Qiu. Guidance from Professor Yu Sun.
 
-Environment Setup
------------------
+More on Travel Just Right
+-----------------------------------------------------
+Travel Just Right combines user input (temperature and crowd-level) with data to recommend for users the best months to visit a destination based on their preferences. Presently, we only offer suggestions for America's 59 national parks. We started with these destinations because they're among the country's top destinations and the National Park Service does a great job with providing visitation data on its properties. We hope to add more destinations in the future.
 
-1. Install the latests Maven (http://maven.apache.org/download.cgi)
-2. Install the Eclipse 4+ (http://www.eclipse.org/)
-3. Install the Maven Eclipse Plug-in using the update site (http://www.eclipse.org/m2e/download/)
+Our recommendations
+-----------------------------------------------------
+Our suggestions are simply a starting point for planning your trip and should be paired with careful research. We hope to refine our recommendations to account for more data points helpful in deciding when to visit a destination.
 
-Importing the Project into Eclipse
-----------------------------------
+Our data
+-----------------------------------------------------
+Our visitation data is taken from NPS's Integrated Resource Management Applications (IRMA) Portal. For each park, we averaged monthly recreational visits from 2006 to 2015. Our historical weather data is taken from www.usclimatedata.com.
 
-1. File->Import->Maven->Existing Maven Projects
-2. Select the directory containing the pom.xml file
-3. Finish
-
-Building the Project for the First Time
----------------------------------------
-1. Right-click on the project root folder->Maven->Update Project
-
-Running the Project Locally  
-----------------------------------------
-1. Locate the App.java in src/main/java source folder and right-click on it->Run As->Java Application
-2. Verify the running process in your web browser by the following URLs:
-
-- http://localhost:8080/
-- http://localhost:8080/cs480/ping
-- http://localhost:8080/cs480/home
-
+How to Run Locally
+-----------------------------------------------------
+To Run this locally use the instructions in readme in https://github.com/csupomona-cs480/demo-web-project.
