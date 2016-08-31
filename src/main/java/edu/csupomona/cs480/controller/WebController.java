@@ -85,9 +85,13 @@ public class WebController {
 	public WeightedRankings getRec2(String parkName, int prefCrowds, int prefTemp, int prefWeight) {
 		System.out.println("getRec2 called. parkname: " + parkName + ". crowds pref: " + prefCrowds + ". temp pref: " + prefTemp+ ". prefweight: " + prefWeight);
 		ParkData park = CsvParser.parsePark(parkName);
-		//DensityAlg rec=new DensityAlg(park,prefCrowds);
+		//DensityAlg rec = new DensityAlg(park,prefCrowds);
 		WeightedRankings rec= new WeightedRankings(park,prefCrowds,prefTemp,prefWeight);
 		rec.getRankings();
+		//System.out.print("Description: " + park.getDescription() +"\n");
+		//System.out.print("Location: " + park.getLocation() + "\n");		
+		//System.out.print("Image: " + park.getImageURL() + "\n");
+		//System.out.print("Credit: " + park.getImageCredit() + "\n");
 		return rec;
 	}
 	@RequestMapping(value = "/parkPage", method = RequestMethod.GET)

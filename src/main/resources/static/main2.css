@@ -1,5 +1,6 @@
 body {
   font-family: tahoma;
+  margin: -30px 0px -30px 0px;
 }
 
 p {
@@ -13,7 +14,7 @@ p {
 h1 {
 	text-align: center;
 	font-size: 70px;
-	line-height: 10px;
+	line-height: 1;
 	margin-bottom: 40px;
 	font-family: 'Muli';
 	color: #CEF0D4;
@@ -30,9 +31,10 @@ h2 {
 
 h3 {
 	text-align: center;
-    color: #CEF0D4;
-    font-family: 'muli'; 
+  color: #CEF0D4;
+  font-family: 'muli'; 
 	text-shadow: 1px 1px #000; 
+	font-size: 24px;
 }
 
 .button { 
@@ -45,20 +47,56 @@ h3 {
 }
 	
 .chart-container { 
-	width: 48%; 
+	width: 80%; 
 	height: auto;
-	float: left;
+	margin-right: auto;
+	margin-left: auto;
 	margin-bottom: 10px;
 }
 
 #search-field {
-	margin: 40px auto 30px auto;
-	width: 40%;
-	text-align: center;
+	float: left;
+	width: 60%;
+	margin-left: 10%;
 }	
 
+.dp-menu {
+	width: 70%;
+	border-radius: 4px;
+	border-width: 1px;
+	font-size: 20px;
+}
+
+#helpButton {
+	font-weight: bold;
+    font-size: 16px;	
+	border-radius: 50px;
+	border: 2px solid #000;
+}
+
+#help {
+	width: 5%;
+	float: left;
+}
+
+#submitLine {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	padding-left: 21%;
+}
+
+#content {
+	background: rgba(20, 20, 20, .65);
+	width: 70%;
+	margin: 30px auto 0px auto;
+	padding: 30px 0px 10px 0px;
+	margin-bottom: 30px;
+}
+
 .option {
- 	width: 40%;
+ 	width: 60%;
 	margin: auto;
 	margin-bottom: 60px;
 }
@@ -86,11 +124,33 @@ input[type=text] {
     border-radius: 4px;
 }
 
-.dp-menu {
-	width: 60%;
-	border-radius: 4px;
-	border-width: 1px;
+.subhead {
+	width: 80%;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+  color: #CEF0D4; 
+	font-family: 'Muli';
 	font-size: 20px;
+	font-weight: bold;
+}
+
+.recText {
+	width: 80%;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.subheadChart {
+	width: 100%;
+	text-align: left;
+	margin-left: auto;
+	margin-right: auto;
+  color: #CEF0D4; 
+	font-family: 'Muli';
+	font-size: 20px;
+	font-weight: bold;
 }
 
 #amount {
@@ -105,13 +165,7 @@ input[type=text] {
  	float: right;
 	width: 30%;
 	color: #FFFFFF;
-	text-shadow: 2px 2px #000000;
-}
-
-
-#rec-text {
-	font-size: 18px;
-	margin-top: 80px;
+	text-shadow: 1px 1px #000000;
 }
 
 #not-found-text {
@@ -119,23 +173,96 @@ input[type=text] {
 	font-size: 20px;
 }
 
-.about a {
-	color: #fff;
+a {
+	color: #00FFFF;
 	text-decoration: none;
 }
+
 
 .about {
 	font-size: 10px;
 	text-shadow: 1px 1px #000000;
-	margin-top: 250px;
+	margin-top: 100px;
 }	
-		
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 170px;
+    background-color: black;
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    top: -5px;
+    right: 120%;
+	top: -150%;
+  	font-family: tahoma;
+  	font-weight: normal;
+  	font-size: 10px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent transparent black;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.disclaimer {
+	clear: both;
+	font-size: 10px;
+}
+
+.photoCredit {
+	font-size: 10px;
+	text-align: left;
+	width: 80%;
+	margin: auto;
+}
+
+.space {
+	height: 100px;
+}
+
+.c3-legend-item {
+	fill: white;
+	text-shadow: 1px 1px #000000;
+}
+ 
+.c3-axis-y {
+	fill: white;
+    font-size:12px;
+	text-shadow: 1px 1px #000000;
+}
+
+.c3-axis-x {
+	fill: white;
+    font-size:12px;
+	text-shadow: 1px 1px #000000;
+}
+
+.c3 .c3-axis-x path, .c3 .c3-axis-x line {
+    stroke: white;
+}
+.c3 .c3-axis-y path, .c3 .c3-axis-y line {
+    stroke: white;
+}
+
 @media only screen and (max-width: 980px) {
-	
-	#rec-text {
-		font-size: 18px;
-		margin-top: 80px;
-	}
 
 	h1 {
 		font-size: 50px;
@@ -145,6 +272,10 @@ input[type=text] {
 		font-size: 20px;
 	}
 
+	#content {
+		width: 90%;
+	}
+	
 	.m-hide {
 		display: none;
 	}
@@ -156,11 +287,7 @@ input[type=text] {
 	}
 	
 	.slider-text { 
-		float: right;
 		width: 25%; 
-		margin: auto;
-		margin-right: 3px;
-		margin-left: 3px;
 	}
 	
 	.option {
@@ -170,31 +297,33 @@ input[type=text] {
 	}
 		
 	.chart-container { 
-		width: 100%; 
-		height: auto;
-		float: left;
-		margin-bottom: 10px;
+		width: 90%; 
 	}
 	
 	#search-field {
-		margin: 40px auto 30px auto;
-		width: 100%;
+		width: 80%;
 		text-align: center;
 	}
+	
+	.dp-menu {
+		width: 60%;
+	}
+	
+	#submitLine {
+		width: 100%;
+		padding-left: 0%;
+	}
+	
+	.subhead {
+		width: 90%;
+	}
 
-}
-
-.disclaimer a {
-	color: #fff;
-	text-decoration: none;
-}
-
-.disclaimer {
-	clear: both;
-	font-size: 10px;
-	margin-top: 250px;
-}
-
-.photo_credit {
-	font-size: 10px;
+	.recText {
+		width: 90%;
+	}
+	
+	.photoCredit {
+		width: 90%;
+	}
+	
 }

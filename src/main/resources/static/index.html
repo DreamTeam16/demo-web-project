@@ -4,19 +4,21 @@
 
 <head>
 
-    <title>[Travel] Just Right</title>
+    <title>Travel Just Right</title>
 
     <link rel="icon" href="http://cs480-projects.github.io/teams-summer2016/dreamteam/logo.png">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Quick data and suggestions for when you should visit America's national parks.">
+	<meta name="keywords" content="national parks, yellowstone, grand canyon, yosemite, joshua tree">
+	<meta property="og:image" content="https://c1.staticflickr.com/9/8649/28171646070_217e38d6d6_z.jpg">
+	<meta property="og:title" content="Travel Just Right">
 
     <!-- link rel="stylesheet" href="main.css" type="text/css" media="screen" / -->
 
     <!-- miscellaneous js -->
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-
-
 
 <!-- site-wide custom css -->
 <link href="main2.css" rel="stylesheet" type="text/css">
@@ -32,122 +34,78 @@
     <link rel="stylesheet" href="/resources/demos/style.css">
 
   
-
-  
-
+<!-- for google analytics -->
 <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-$(function() {
-
-$("#slider1").slider({
-
-range: "min",
-
-min: 1,
-
-max: 12,
-
-value: 6
-
-});
-
-});
-
-$(function() {
-
-$("#slider2").slider({
-
-range: "min",
-
-min: 0,
-
-max: 100,
-
-value: 68,
-
-slide: function(event, ui) {
-
-$("#amount").val(ui.value);
-
-}
-
-});
-
-$("#amount").val( $("#slider2").slider("value"));
-
-});
-
-
-$(function() {
-
-$("#slider3").slider({
-
-range: "min",
-
-min: 1,
-
-max: 12,
-
-value: 6
-
-});
-
-});
+  ga('create', 'UA-81663410-1', 'auto');
+  ga('send', 'pageview');
 
 </script>
 
+<script>
+	$(function() {
+		$("#slider1").slider({
+			range: "min",
+			min: 1,
+			max: 13,
+			value: 6
+		});
+	});
+
+	$(function() {
+		$("#slider2").slider({
+			range: "min",
+			min: 0,
+			max: 100,
+			value: 68,
+			slide: function(event, ui) {
+				$("#amount").val(ui.value);
+			}
+		});
+		$("#amount").val( $("#slider2").slider("value"));
+	});
+	
+	$(function() {
+		$("#slider3").slider({
+			range: "min",
+			min: 1,
+			max: 12,
+			value: 6
+		});
+	});
+
+</script>
 
 <!-- for angular JS to get recommendation -->
 
 <script>
-
 var cs480App = angular.module('cs480App', []);
-
 cs480App.controller('recCtrl', function ($scope, $http) {
-
- 
-
-$scope.getRec2 = function() {
-
-
-var myParams = { 
-
-parkName: String($("#parkName").val()),
-
-prefCrowds: $("#slider1").slider("value"),
-
-prefTemp: $("#slider2").slider("value"),
-
-prefWeight: $("#slider3").slider("value")
-
-}
-
-
-$http.get("getRec2", { params: myParams } )
-
-.success(function(data){
-
-$scope.rec2 = data;
-
+	$scope.getRec2 = function() {
+	var myParams = { 
+		parkName: String($("#parkName").val()),
+		prefCrowds: $("#slider1").slider("value"),
+		prefTemp: $("#slider2").slider("value"),
+		prefWeight: $("#slider3").slider("value")
+	}
+	$http.get("getRec2", { params: myParams } )	
+		.success(function(data){
+		$scope.rec2 = data;
+	});
+	}
 });
-
-}
-
-});
-
 </script>
 
-
-
 </head>
-
-
 
 <body ng-app="cs480App" ng-controller="recCtrl">
 
 <script>
 	var bgColorArray = [ 
-	'https://c2.staticflickr.com/8/7788/27369456531_7d32ac2ad0_h.jpg',
 	'https://c1.staticflickr.com/9/8649/28171646070_7c721f06c0_h.jpg', 
 	'https://c2.staticflickr.com/4/3928/14937541893_54ca15b6b5_h.jpg', 
 	'https://c2.staticflickr.com/6/5647/22147861080_77fc5e9a1c_h.jpg',
@@ -161,440 +119,261 @@ $scope.rec2 = data;
 
 <link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
-<!--
-<div class="content">
+<div style="background-image: url({{rec2.imageURL}}); background-repeat: repeat-y; background-size: auto 2150px;">
+<div id="content">
 
-  <div class="visible">
-
-    <h4>
-
-      Travel
-
-    </h4>
-
-    <ul>
-	
-	  <li>Just Right</li>
-
-      <li>To National Parks!</li>
-
-      <li>You Know Where.</li>
-
-      <li>We Tell You When.</li>
-
-    </ul>
-
-  </div>
-
-</div>
-
--->
-
-
-
-<h2>[TRAVEL]<h2>
-
-<h1>Just Right</h1>
-
+<h1>Travel Just Right</h1>
 <h3><span>You know where. </span><span>We tell you when.</span></h3>
 
-
-
-<div id="search-field">
-
-<form ng-submit="getRec2()">
-
-<select id="parkName" class="dp-menu">
-
-<option disabled selected>Select national park</option>
-
-<option>Acadia National Park</option>
-
-<option>Arches National Park</option>
-
-<option>Badlands National Park</option>
-
-<option>Big Bend National Park</option>
-
-<option>Biscayne National Park</option>
-
-<option>Black Canyon of the Gunnison National Park</option>
-
-<option>Bryce Canyon National Park</option>
-
-<option>Canyonlands National Park</option>
-
-<option>Capitol Reef National Park</option>
-
-<option>Carlsbad Caverns National Park</option>
-
-<option>Channel Islands National Park</option>
-
-<option>Congaree National Park</option>
-
-<option>Crater Lake National Park</option>
-
-<option>Cuyahoga Valley National Park</option>
-
-<option>Death Valley National Park</option>
-
-<option>Denali National Park & Preserve</option>
-
-<option>Dry Tortugas National Park</option>
-
-<option>Everglades National Park</option>
-
-<option>Gates of the Arctic National Park</option>
-
-<option>Glacier Bay National Park</option>
-
-<option>Glacier National Park</option>
-
-<option>Grand Canyon National Park</option>
-
-<option>Grand Teton National Park</option>
-
-<option>Great Basin National Park</option>
-
-<option>Great Sand Dunes National Park and Preserve</option>
-
-<option>Great Smoky Mountains National Park</option>
-
-<option>Guadalupe Mountains National Park</option>
-
-<option>Haleakala National Park</option>
-
-<option>Hawaii Volcanoes National Park</option>
-
-<option>Hot Springs National Park</option>
-
-<option>Isle Royale National Park</option>
-
-<option>Joshua Tree National Park</option>
-
-<option>Katmai National Park and Preserve</option>
-
-<option>Kenai Fjords National Park</option>
-
-<option>Kings Canyon National Park</option>
-
-<option>Kobuk Valley National Park</option>
-
-<option>Lake Clark National Park</option>
-
-<option>Lassen Volcanic National Park</option>
-
-<option>Mammoth Cave National Park</option>
-
-<option>Mesa Verde National Park</option>
-
-<option>Mount Rainier National Park</option>
-
-<option>National Park of American Samoa</option>
-
-<option>North Cascades National Park</option>
-
-<option>Olympic National Park</option>
-
-<option>Petrified Forest National Park</option>
-
-<option>Pinnacles National Park</option>
-
-<option>Redwood National Park</option>
-
-<option>Rocky Mountain National Park</option>
-
-<option>Saguaro National Park</option>
-
-<option>Sequoia National Park</option>
-
-<option>Shenandoah National Park</option>
-
-<option>Theodore Roosevelt National Park</option>
-
-<option>Virgin Islands National Park</option>
-
-<option>Voyageurs National Park</option>
-
-<option>Wind Cave National Park</option>
-
-<option>Wrangell St. Elias National Park and Preserve</option>
-
-<option>Yellowstone National Park</option>
-
-<option>Yosemite National Park</option>
-
-<option>Zion National Park</option>
-
-    </select>
-
-    <input type="submit" value="Submit" onclick="updateCharts()" class="button">
-
-</form>
+<div id="submitLine">
+	<div id="search-field">
+		<form ng-submit="getRec2()">
+			<select id="parkName" class="dp-menu">
+			<option disabled selected>Select national park*</option>
+			<option>Acadia National Park</option>
+			<option>Arches National Park</option>
+			<option>Badlands National Park</option>
+			<option>Big Bend National Park</option>
+			<option>Biscayne National Park</option>
+			<option>Black Canyon of the Gunnison National Park</option>
+			<option>Bryce Canyon National Park</option>
+			<option>Canyonlands National Park</option>
+			<option>Capitol Reef National Park</option>
+			<option>Carlsbad Caverns National Park</option>
+			<option>Channel Islands National Park</option>
+			<option>Congaree National Park</option>
+			<option>Crater Lake National Park</option>
+			<option>Cuyahoga Valley National Park</option>
+			<option>Death Valley National Park</option>
+			<option>Denali National Park & Preserve</option>
+			<option>Dry Tortugas National Park</option>
+			<option>Everglades National Park</option>
+			<option>Gates of the Arctic National Park</option>
+			<option>Glacier Bay National Park</option>
+			<option>Glacier National Park</option>
+			<option>Grand Canyon National Park</option>
+			<option>Grand Teton National Park</option>
+			<option>Great Basin National Park</option>
+			<option>Great Sand Dunes National Park and Preserve</option>
+			<option>Great Smoky Mountains National Park</option>
+			<option>Guadalupe Mountains National Park</option>
+			<option>Haleakala National Park</option>
+			<option>Hawaii Volcanoes National Park</option>
+			<option>Hot Springs National Park</option>
+			<option>Isle Royale National Park</option>
+			<option>Joshua Tree National Park</option>
+			<option>Katmai National Park and Preserve</option>
+			<option>Kenai Fjords National Park</option>
+			<option>Kings Canyon National Park</option>
+			<option>Kobuk Valley National Park</option>
+			<option>Lake Clark National Park</option>
+			<option>Lassen Volcanic National Park</option>
+			<option>Mammoth Cave National Park</option>
+			<option>Mesa Verde National Park</option>
+			<option>Mount Rainier National Park</option>
+			<option>National Park of American Samoa</option>
+			<option>North Cascades National Park</option>
+			<option>Olympic National Park</option>
+			<option>Petrified Forest National Park</option>
+			<option>Pinnacles National Park</option>
+			<option>Redwood National Park</option>
+			<option>Rocky Mountain National Park</option>
+			<option>Saguaro National Park</option>
+			<option>Sequoia National Park</option>
+			<option>Shenandoah National Park</option>
+			<option>Theodore Roosevelt National Park</option>
+			<option>Virgin Islands National Park</option>
+			<option>Voyageurs National Park</option>
+			<option>Wind Cave National Park</option>
+			<option>Wrangell St. Elias National Park and Preserve</option>
+			<option>Yellowstone National Park</option>
+			<option>Yosemite National Park</option>
+			<option>Zion National Park</option>
+	    </select>
+	    <input type="submit" value="Submit" onclick="updateCharts();" class="button" />
+	</form>
+	</div>
+	
+	<div id="help" class="tooltip">
+		<button id="helpButton">?</button>
+		<span class="tooltiptext">To see our suggestions, pick a park, select your preferences then click submit.</span>
+	</div>
 
 </div>
 
+<div style="clear: both;"></div>
   
-
 <div class="sliders-container">
 
-
-
 <div class="option">
-
-<p>How do you feel about crowds?</p>
-
-<p class="slider-text">Don't mind</p>
-
-<div class="slider">
-
-<div id="slider1"></div>
-
+	<p>How do you feel about crowds?</p>
+	<p class="slider-text">Don't mind</p>
+	<div class="slider">
+	<div id="slider1"></div>
+	</div>
+	<p class="slider-text">Dislike <span class="m-hide">them</span><p/>
 </div>
-
-<p class="slider-text">Dislike <span class="m-hide">them</span><p/>
-
-</div>
-
 
 <div style="clear: both;"></div>
 
-
 <div class="option">
-
-<p>What's your ideal temperature?</p>
-<div id="temp_field"><input type="text" id="amount" class="input-field">&deg; F</div>
-<div class="slider">
-<div id="slider2"></div>
+	<p>What's your ideal temperature?</p>
+	<div id="temp_field"><input type="text" id="amount" class="input-field">&deg; F</div>
+	<div class="slider">
+	<div id="slider2"></div>
+	</div>
 </div>
-</div>
-
 
 <div style="clear: both;"></div>
 
-
 <div class="option">
-
-<p>Which matters more to you?</p>
-
-<p class="slider-text">Temp<span class="m-hide">erature</span></p>
-
-<div class="slider">
-
-<div id="slider3"></div>
-
+	<p>Which matters more to you?</p>
+	<p class="slider-text">Temp<span class="m-hide">erature</span></p>
+	<div class="slider">
+	<div id="slider3"></div>
 </div>
 
 <p class="slider-text">Crowd <span class="m-hide">level</span><p/>
 
 </div>
 
-
 <div style="clear: both;"></div>
-
 
 </div>
 
-
-
 <div style="clear: both;"></div>
-
-
 
 <div class="double-chart-container"> 
 
 <p id="not-found-text">You forgot to select a destination.</p>
 
-
-<!--<p class="chart" id="rec-text">Go to {{rec2.name}} in {{rec2.month}}</p>
-
-
-code for three suggestions instead of one
-
--->
 <div class="chart">
 
-<p id="rec-text">Best times to visit {{rec2.name}}:<br />
+<br />
+<h3>{{rec2.name}}</h3>
 
-1. {{rec2.month[2]}} || 2. {{rec2.month[1]}} || 3. {{rec2.month[0]}}</p> 
+<p class="photoCredit">Photo taken by: {{rec2.imageCredit}}</p>
+
+<p class="subhead">Your best times to visit&nbsp;&nbsp;&nbsp;
+	<span class="tooltip">
+		<button id="helpButton">?</button>
+		<span class="tooltiptext">Our algorithm is solely based on visitation and weather data. See our <a href="http://cs480-projects.github.io/teams-summer2016/dreamteam/index.html">about page</a> for more info.</span>
+	</span>
+</p> 
+	
+<p class="recText">1. {{rec2.month[2]}}</p>
+<p class="recText">2. {{rec2.month[1]}}</p>
+<p class="recText">3. {{rec2.month[0]}}</p>
+
+<p class="subhead">Description</p>
+<p class="recText">{{rec2.description}}</p>
+<p class="recText">Source: <a href="https://en.wikipedia.org/wiki/List_of_national_parks_of_the_United_States">Wikipedia</a></p>
+
+<p class="subhead">Location</p>
+<p class="recText">{{rec2.location}}</p>
+
+<p class="subhead">More information</p>
+<p class="recText">For more on {{rec2.name}}, visit <a href="https://www.nps.gov/search/?affiliate=nps&query={{rec2.name}}">the National Park Service's website</a>.</p>
 
 </div>
-
-
-
-
- 
 
 <div class="chart-container">
-
  	<div class="chart">
-
-<p>[Crowds]</p>
-
-<div id="visitor-chart"></div>
-
- 	</div>
-
+		<p class="subheadChart">Average monthly visitors</p>
+		<div id="visitor-chart"></div>
+	</div>
 </div>
-
-
 
 <div class="chart-container">
-
- 	<div class="chart">
-
-<p>[Weather]</p>
-
-<div id="weather-chart"></div>
-
+	<div class="chart">
+		<p class="subheadChart">Average monthly highs and lows</p>
+		<div id="weather-chart"></div>
  	</div>
+</div>
 
 </div>
 
+<div class="space"></div>
 
+<p class="disclaimer"><a href="http://cs480-projects.github.io/teams-summer2016/dreamteam/index.html">About us</a> | <a href="/credits.html">Photo credits (background images)</a></p>
 
 </div>
-
-
-<p class="disclaimer"><a href="http://cs480-projects.github.io/teams-summer2016/dreamteam/index.html">About us</a> | <a href="/credits.html">Photo credits</a></p>
+</div>
 
 <script>
 
-
 window.onerror = function() {
-
     $(".chart").hide(); 
-
     $("#not-found-text").show();
-
 };
 
-
     $(".chart").hide(); 
-
     $("#not-found-text").hide(); 
 
-    
+	var chart = c3.generate({
 
-var chart = c3.generate({
-
-bindto: '#visitor-chart',
-
+	bindto: '#visitor-chart',
 
     data: {
-
         url: '/data/parks/chart-data/visitor-data/Joshua Tree National Park.csv',
-
         type: 'bar'
-
     },
 
-   
-
     color: {
+	pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
+	},
 
-pattern: ['#1f77b4', '#aec7e8', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
-
-},
-
-   
-
-axis: {
-
-x: {
-
-type: 'category',
-
-categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
-},
-
-
-y: { 
-
-tick: {
-
-format: d3.format(",")
-
+	axis: {
+		x: {
+			type: 'category',
+			categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+		},
+		
+		y: { 
+			tick: {
+			format: d3.format(",")
+		}
+	}
 }
-
-}
-
-    }
-
 });
 
 
 var chart2 = c3.generate({
-
-bindto: '#weather-chart',
-
-
+	bindto: '#weather-chart',
     data: {
-
         url: '/data/parks/chart-data/weather-data/Joshua Tree National Park.csv',
-
         type: 'bar'
-
     },
-
-   
-
     color: {
-
-pattern: ['#d62728', '#1f77b4', '#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
-
+	pattern: ['#d62728', '#1f77b4', '#aec7e8', '#1f77b4', '#ff7f0e', '#ffbb78', '#2ca02c', '#98df8a', '#d62728', '#ff9896', '#9467bd', '#c5b0d5', '#8c564b', '#c49c94', '#e377c2', '#f7b6d2', '#7f7f7f', '#c7c7c7', '#bcbd22', '#dbdb8d', '#17becf', '#9edae5']
 },
 
-
-axis: {
-
-x: {
-
-type: 'category',
-
-categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-
+	axis: {
+	x: {
+		type: 'category',
+		categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+	}
 }
-
-}
-
-   
-
 });
 
-
 function updateCharts() {
-
+	
     $("#not-found-text").hide();
     
-var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
-
-var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
+	var visitorData = "/data/parks/chart-data/visitor-data/" + String($("#parkName").val()) + ".csv";
+	var weatherData = "/data/parks/chart-data/weather-data/" + String($("#parkName").val()) + ".csv";
 
     chart.load({
-
         url: visitorData
-
     });
-
-   
 
     chart2.load({
-
         url: weatherData
-
     });
 
-$(".chart").show(); 
-
+	$(".chart").show(); 
  }
-
-
 </script>
 
 </body>
-
-
-
 </html>

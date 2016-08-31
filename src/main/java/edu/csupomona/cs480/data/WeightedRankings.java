@@ -9,6 +9,10 @@ public class WeightedRankings {
 	int prefTemp;
 	double prefWeight;
 	ParkData park;
+	public String description;
+	public String location;
+	public String imageURL;
+	public String imageCredit;
 	public String[] month=new String[3];
 	double tempWeight;
 	double crowdsWeight;
@@ -16,18 +20,20 @@ public class WeightedRankings {
 	
 	public WeightedRankings(ParkData park, int prefCrowds, int prefTemp, int prefWeight)
 	{
-		this.park=park;
-		name=park.getName();
+		this.park = park;
+		this.description = park.getDescription();
+		this.location = park.getLocation();
+		this.imageURL = park.getImageURL();
+		this.imageCredit = park.getImageCredit();
+		name = park.getName();
 		this.prefCrowds=prefCrowds;
 		this.prefTemp=prefTemp;
 		this.prefWeight=prefWeight;	
 	
 	}
-	
+
 	public void getWeight()
 	{
-		
-		
 		System.out.println("prefWeight: "+ prefWeight);
 		//slider all the way to crowds
 		if (prefWeight == 1){

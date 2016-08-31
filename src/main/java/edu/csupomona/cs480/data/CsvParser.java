@@ -190,8 +190,7 @@ public class CsvParser {
 		WeatherParser.parseParkWeather(park);
 		
 		for(int i = 0; i < 13; i++){
-			recVisitors[i] = 0;
-			
+			recVisitors[i] = 0;	
 		}
 		
 		try {
@@ -199,10 +198,14 @@ public class CsvParser {
 			
 			//parse park csv data line by line
 			while ((line = br.readLine()) != null) {
-				String[] month = line.split(cvsSplitBy);
+				String[] month = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 				
-				if(counter == 0) {					
+				if(counter == 0) {
 					park.setName(month[1]);
+					park.setDescription(month[13].substring(1, month[13].length()-1));
+					park.setLocation(month[14]);
+					park.setImageURL(month[15]);
+					park.setImageCredit(month[16]);
 					counter++;
 				}
 				

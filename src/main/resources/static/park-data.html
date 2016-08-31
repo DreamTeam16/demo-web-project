@@ -1,97 +1,134 @@
 <html>
 <!-- This page will be shown when you git the root URL -->
 <head>
-    <title>[Travel] Just Right</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <!-- miscellaneous js -->
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 
-	<!-- site-wide custom css -->
-	<link href="main.css" rel="stylesheet" type="text/css">
-	
-	<!-- for charts -->
-	<link href="/js/c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
-	<script src="/js/c3/d3.min.js"></script>
-	<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
-	<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
-	
-	<!-- for slider -->
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-    <link rel="stylesheet" href="/resources/demos/style.css">
+<title>Travel Just Right</title>
+
+<link rel="icon" href="http://cs480-projects.github.io/teams-summer2016/dreamteam/logo.png">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Quick data and suggestions for when you should visit America's national parks.">
+<meta name="keywords" content="national parks, yellowstone, grand canyon, yosemite, joshua tree">
+<meta property="og:image" content="https://c1.staticflickr.com/9/8649/28171646070_217e38d6d6_z.jpg">
+<meta property="og:title" content="Travel Just Right">
+
+<!-- link rel="stylesheet" href="main.css" type="text/css" media="screen" / -->
+
+<!-- miscellaneous js -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+<!-- site-wide custom css -->
+<link href="main2.css" rel="stylesheet" type="text/css">
+
+<!-- for charts -->
+<link href="/js/c3/c3-0.4.11/c3.css" rel="stylesheet" type="text/css">
+<script src="/js/c3/d3.min.js"></script>
+<script src="/js/c3/c3-0.4.11/c3.min.js"></script>
+
+<!-- for slider -->
+<link rel="stylesheet" href="jquery-ui.css">
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<link rel="stylesheet" href="/resources/demos/style.css">
+
   
-	<script>
-		$(function() {
-			$("#slider1").slider({
-				range: "min",
-				min: 1,
-				max: 13,
-				value: 6
-			});
-		});
+<!-- for google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-		$(function() {
-			$("#slider2").slider({
-				range: "min",
-				min: 0,
-				max: 100,
-				value: 68,
-				slide: function(event, ui) {
-					$("#amount").val(ui.value);
-				}
-			});
-			$("#amount").val( $("#slider2").slider("value"));
-		});
-		
-		$(function() {
-			$("#slider3").slider({
-				range: "min",
-				min: 1,
-				max: 12,
-				value: 6
-			});
-		});
+  ga('create', 'UA-81663410-1', 'auto');
+  ga('send', 'pageview');
 
-	</script>
-	
-	<!-- for angular JS to get recommendation -->
-	<script>
-	var cs480App = angular.module('cs480App', []);
+</script>  
 
-	cs480App.controller('recCtrl', function ($scope, $http) {
-		 				
-	$scope.getRec2 = function() {
-	
-		var myParams = { 
-			parkName: String($("#parkName").val()),
-			prefCrowds: $("#slider1").slider("value"),
-			prefTemp: $("#slider2").slider("value"),
-			prefWeight: $("#slider3").slider("value")
-		}
-		
-		$http.get("getRec2", { params: myParams } )
-			.success(function(data){
-				$scope.rec2 = data;
+<script>
+	$(function() {
+		$("#slider1").slider({
+			range: "min",
+			min: 1,
+			max: 13,
+			value: 6
 		});
-	}
-
 	});
-	</script>
+
+	$(function() {
+		$("#slider2").slider({
+			range: "min",
+			min: 0,
+			max: 100,
+			value: 68,
+			slide: function(event, ui) {
+				$("#amount").val(ui.value);
+			}
+		});
+		$("#amount").val( $("#slider2").slider("value"));
+	});
+	
+	$(function() {
+		$("#slider3").slider({
+			range: "min",
+			min: 1,
+			max: 12,
+			value: 6
+		});
+	});
+
+</script>
+
+<!-- for angular JS to get recommendation -->
+<script>
+var cs480App = angular.module('cs480App', []);
+
+cs480App.controller('recCtrl', function ($scope, $http) {
+	 				
+$scope.getRec2 = function() {
+
+	var myParams = { 
+		parkName: String($("#parkName").val()),
+		prefCrowds: $("#slider1").slider("value"),
+		prefTemp: $("#slider2").slider("value"),
+		prefWeight: $("#slider3").slider("value")
+	}
+	
+	$http.get("getRec2", { params: myParams } )
+		.success(function(data){
+			$scope.rec2 = data;
+	});
+}
+
+});
+</script>
 
 </head>
 
 <body ng-app="cs480App" ng-controller="recCtrl">
 
+<! -- for background image -->
+
+<script>
+	var bgColorArray = [ 
+	'https://c2.staticflickr.com/8/7788/27369456531_7d32ac2ad0_h.jpg',
+	'https://c1.staticflickr.com/9/8649/28171646070_7c721f06c0_h.jpg', 
+	'https://c2.staticflickr.com/4/3928/14937541893_54ca15b6b5_h.jpg', 
+	'https://c2.staticflickr.com/6/5647/22147861080_77fc5e9a1c_h.jpg',
+	'https://c1.staticflickr.com/9/8748/27838300803_735caf5ab2_h.jpg',
+	'https://c1.staticflickr.com/9/8571/27837889234_5ec111eda2_h.jpg'
+	],
+	    selectBG = bgColorArray[Math.floor(Math.random() * bgColorArray.length)];
+	 
+	$('body').css('background', 'url(' + selectBG + ')', 'background-position: right top')
+</script>
+
 <h2>[TRAVEL]<H2>
 <h1>Just Right</h1>
 <h2><span>You know where. </span><span>We tell you when.</span></h2>
 
-<div id="search-field" class="ui-widget">		
+<div id="search-field">	
 	<form ng-submit="getRec2()">
-		<select id="parkName" name="parkName">
+		<select id="parkName" class="dp-menu">
 			<option disabled selected>Select national park*</option>
 			<option>Acadia National Park</option>
 			<option>Arches National Park</option>
@@ -260,7 +297,7 @@ var chartData = {
 	
 </script>
 
-<p class="disclaimer">*Presently, we only support recommendations for America's 59 national parks. More destinations to come.</p>
+<p class="disclaimer"><a href="http://cs480-projects.github.io/teams-summer2016/dreamteam/index.html">About us</a> | <a href="/credits.html">Photo credits</a></p>
 
 <script>
 /*
